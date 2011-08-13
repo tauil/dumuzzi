@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
+gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
 
 # Use unicorn as the web server
 gem 'unicorn'
