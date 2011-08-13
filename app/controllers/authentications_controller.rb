@@ -27,7 +27,7 @@ class AuthenticationsController < ApplicationController
   end
   
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
+    @authentication = current_user.authentications.where(:id => params[:id]).first
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication."
     redirect_to authentications_url

@@ -1,4 +1,4 @@
 require 'openid/store/filesystem'
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, 'kkUO0CNioUNKP1urWcqLw', 'SGlyCahJBb4ellJWi7T5bEtGtj0AYMSVHS1oFrGyes'
+  provider :twitter, '6Q4EkvJyO498JBsmz6w', 'eD8Hq3MsW44i11corhqQhvmMYKITi1mR4t8TtuGU'
 end
