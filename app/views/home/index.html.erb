@@ -2,6 +2,5 @@
   Signed in as <%= current_user.email %>.<br />
   Not you? <%= link_to "Sign out", destroy_user_session_path %>
 <% else %>
-  <%#= link_to "Sign In", authentications_path %>
-  Sign In
+  <%= link_to "Sign In", authentications_path %>
 <% end %>
