@@ -18,6 +18,9 @@ end
 
 gem 'jquery-rails'
 gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+
 # Use unicorn as the web server
 gem 'unicorn'
 
