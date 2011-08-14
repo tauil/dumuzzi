@@ -13,10 +13,7 @@
   <% end %>
 
   <fieldset>
-    <label><b><%= I18n.t :id %></b></label>
-    <%= f.text_field :id %><br /><br /><br /><br />
 
-  </fieldset>
   <fieldset>
     <label><b><%= I18n.t :domain %></b></label>
     <%= f.collection_select(:domain_id, @domain, :id, :name, {:prompt => 'Selecione'} ) %>
@@ -25,11 +22,8 @@
     <label><b><%= I18n.t :name %></b></label>
     <%= f.text_field :name %><br /><br /><br /><br />
 
-    <label><b><%= I18n.t :address %></b></label>
-    <%= f.text_field :address %><br /><br /><br /><br />
-
     <label><b><%= I18n.t :description %></b></label>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :rows => 5  %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :allow_comments %></b></label>
@@ -38,14 +32,6 @@
   <fieldset>
     <label><b><%= I18n.t :send_alert %></b></label>
     <%= f.check_box :send_alert %>
-  </fieldset>
-  <fieldset>
-    <label><b><%= I18n.t :share %></b></label>
-    <%= f.check_box :share %>
-  </fieldset>
-  <fieldset>
-    <label><b><%= I18n.t :status %></b></label>
-    <%= f.text_field :status %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :share %></b></label>
