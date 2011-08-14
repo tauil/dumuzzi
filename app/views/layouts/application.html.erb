@@ -1,21 +1,111 @@
 <!DOCTYPE html>
-<html>
+
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
     <title>Dumuzzi</title>
-    <%= stylesheet_link_tag    "application" %>
+
+    <meta name="language" content="en" />
+    <meta name="description" content="Updating Windows using Microsoft Update" />
+    <meta name="keywords" content="updating, windows, microsoft, update, techworld" />
+
+    <%= stylesheet_link_tag    "style.css.scss.erb" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+
+    
+    <%= javascript_include_tag "jquery.js" %>
+    <%= javascript_include_tag "easySlider1.7.js" %>
+	  <script type="text/javascript">
+		  $(document).ready(function(){	
+			  $("#slider").easySlider({
+				  auto: true, 
+				  prevText: '<%= image_tag("botao1.png", :width => 30, :height => 30, :border => 0) %>',
+				  nextText: '<%= image_tag("botao2.png", :width => 30, :height => 30, :border => 0) %>',
+			    pause: 2000,
+				  continuous: true
+			  });
+		  });	
+	  </script>
+
   </head>
   <body>
-    <div id="container">
-      <div id="user_nav">
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>.<br />
-        Not you? <%= link_to "Sign out", destroy_user_session_path %>
-      <% end %>
+    <div id="centralize">
+      <div id="header">
+        <%= image_tag("damuzzilogoteste2.png", :width => 300) %>
+        <div id="subheader">
+          <p>Faça o login:</p>
+          <a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0) %></a>
+        </div>
+        <ul id="menu">
+          <a href="#">HOME</a>
+          <a href="#">TERMS</a>
+          <a href="#">ACCOUNT</a>
+          <a href="#">ABOUT</a>
+        </ul>
+      </div>
+
+      <div id="content">
+        <div id="about">
+          <%= image_tag("mascote.jpg", :width => 400, :height => 350) %>
+          <div id="slider">
+            <ul>
+              <li>
+                <h1>WHAT IS?</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
+              </li>
+              <li>
+                <h1>ABOUT</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
+              </li>
+              <li>
+                <h1>OTHERS</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="ranks">
+          <div id="escalation">
+            <h2><p>ONLINE</p></h2>
+            <ul>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+            </ul>
+          </div>
+          <div id="escalation">
+            <h2><p>NEWEST</p></h2>
+            <ul>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+            </ul>
+          </div>
+          <div id="escalation">
+            <h2><p>SOCIAL</p></h2>
+            <ul>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+              <li><a href="#">www.google.com.br</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div id="footer">
+        <p><b>CIDADELAS JEDIS</b></p>
+        <p class="license"><b>Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)</b></p>
+        <%= image_tag("css.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("html.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("rails.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("ruby.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("jquery.png", :width => 30, :height => 30, :border => 0) %>
       </div>
     </div>
-    <%= yield %>
-
   </body>
 </html>
