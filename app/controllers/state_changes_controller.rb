@@ -1,6 +1,6 @@
 class StateChangesController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @state_changes = StateChange.order 'created_at DESC'

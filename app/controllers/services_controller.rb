@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @services = Service.order 'created_at DESC'

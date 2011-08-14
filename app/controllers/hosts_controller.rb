@@ -1,6 +1,6 @@
 class HostsController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @hosts = Host.order 'created_at DESC'
@@ -10,12 +10,13 @@ class HostsController < ApplicationController
     
   def show
     @host = Host.where(:id => params[:id]).first
+    @hosts_service = @host.hosts_service
     
     respond_with @host
   end
 
   def new
-    @host = Host.new
+    @host = Host.new(:domain_id => [ "?", params[:domain_id] ])
     
     respond_with @host
   end
@@ -49,6 +50,7 @@ class HostsController < ApplicationController
 
   def destroy
     @host = Host.where(:id => params[:id]).first
+    domain = @host.domain
     @host.destroy
     
     respond_with @host

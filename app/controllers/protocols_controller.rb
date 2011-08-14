@@ -1,6 +1,6 @@
 class ProtocolsController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @protocols = Protocol.order 'created_at DESC'

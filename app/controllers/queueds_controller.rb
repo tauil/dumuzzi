@@ -1,6 +1,6 @@
 class QueuedsController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @queueds = Queued.order 'created_at DESC'

@@ -1,6 +1,6 @@
 class DomainsController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @domains = Domain.order 'created_at DESC'
@@ -10,6 +10,7 @@ class DomainsController < ApplicationController
     
   def show
     @domain = Domain.where(:id => params[:id]).first
+    @hosts = @domain.hosts
     
     respond_with @domain
   end

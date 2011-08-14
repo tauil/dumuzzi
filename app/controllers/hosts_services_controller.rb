@@ -1,6 +1,6 @@
 class HostsServicesController < ApplicationController    
   layout 'admin'
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   def index
     @hosts_services = HostsService.order 'created_at DESC'
@@ -15,7 +15,8 @@ class HostsServicesController < ApplicationController
   end
 
   def new
-    @hosts_service = HostsService.new
+    @hosts_service = HostsService.new :host_id => params[:host_id]
+    @hosts_service.user_id = @hosts_service.host.user_id
     
     respond_with @hosts_service
   end
@@ -52,6 +53,18 @@ class HostsServicesController < ApplicationController
     @hosts_service.destroy
     
     respond_with @hosts_service
+  end
+  
+  def threads_test
+    @host_service = HostsService.where(params[:id]).first
+    worker_response = MiddleMan.worker(:monitor_worker).threads_test(:arg => {:id => @host_service.id})
+    redirect_to @hosts_service.host, notice: "Threads Test was successfully queued. Result => #{worker_response}"
+  end
+    
+  def manual_test
+    @host_service = HostsService.where(params[:id]).first
+    worker_response = MiddleMan.worker(:monitor_worker).services_check(:arg => {:id => @host_service.id})
+    redirect_to @host_service, notice: "Manual Test was successfully executed. Result => #{worker_response}"
   end
     
 end
