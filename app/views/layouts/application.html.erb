@@ -35,22 +35,16 @@
         <%= image_tag("damuzzilogoteste2.png", :width => 300) %>
         <div id="subheader">
           <% if @authentications %>
-            <script>
-              $(document).ready(function(){
-               alert("AQUI!!");
-              });
-            </script>
-          <% end %>
-<!--
           <div id="login">
             <%= image_tag("user.png", :width => 60, :height => 60, :border => 0) %>
-            <p>Usuário</p>
+            <p>Logado</p>
           </div>
--->
+          <% else %>
           <div id="logout">
             <p>Faça o login:</p>
             <a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0) %></a>
           </div>
+          <% end %>
 
         </div>
         <ul id="menu">
