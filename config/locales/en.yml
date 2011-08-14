@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  name: "Name"
+  naddress: "Naddress"
+  status: "Status" 
+  monitor: "Monitor" 
+  enabled: "enabled"
