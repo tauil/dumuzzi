@@ -95,6 +95,7 @@ Forever.run do
       else
         queued.host.status = false
         queued.hosts_service.status = false
+        DumuzziMailer.warning_message(queued).deliver
         puts "[Tester] #{queued.service.name} Error."
       end
       queued.hosts_service.save

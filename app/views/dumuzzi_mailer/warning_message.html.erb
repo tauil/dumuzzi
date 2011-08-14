@@ -2,7 +2,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title><%= @warning.subject %></title>
+  <title>Warning Mail</title>
 </head>
 
 <body>
@@ -14,10 +14,10 @@
   <div class="content">
 
     <div class="dinamic">
-      <p>Name: <%= @contact.user_name %></p>
-      <p>Domain Host: <%= @contact.domain_host %></p>
-      <p>Service: <%= @contact.service %></p>
-      <p>Status: <%= @contact.status %></p>
+      <p>Name: <%= @warning.host.name %></p>
+      <p>Domain Host: <%= @warning.host.domain.name %></p>
+      <p>Service: <%= @warning.service.name %></p>
+      <p>Status: <%= @warning.host.status %></p>
     </div>
 
     <div class="static">
