@@ -22,6 +22,12 @@ gem 'devise'
 gem 'omniauth'
 gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
 
+# Daemon
+gem 'foreverb'
+
+# For networking
+gem 'net-ping'
+
 # Use unicorn as the web server
 gem 'unicorn'
 
