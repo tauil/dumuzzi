@@ -1,4 +1,6 @@
 Dumuzzi::Application.routes.draw do
+  resources :queueds
+
   resources :state_changes
 
   resources :hosts_services
