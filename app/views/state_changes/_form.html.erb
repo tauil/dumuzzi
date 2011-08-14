@@ -1,0 +1,26 @@
+<%= form_for(@state_change) do |f| %>
+<div class="module_content">
+  <% if @state_change.errors.any? %>
+    <div id="error_explanation">
+      <h4 class='alert_error'><%= pluralize(@state_change.errors.count, "error") %> prohibited this category from being saved:</h4>
+
+      <ul>
+      <% @state_change.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+</div>
+<footer>
+  <div class="submit_link">
+    <%= f.submit %>
+    <input type="reset" value="Reset">
+    <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back)), state_changes_path %>
+    <% if params[:action] == 'edit' %>
+      <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), @state_change %>
+    <% end %>
+  </div>
+</footer>
+<% end %>
