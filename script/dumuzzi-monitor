@@ -1,0 +1,110 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+
+require "active_record"
+require 'forever'
+require 'mail'
+require 'yaml'
+
+#if ARGV.any? { |cmd| cmd =~ /configure/ }
+#end
+
+run_mode = ENV['RAILS_ENV'] ||= 'development'
+
+dbconfig = YAML::load(File.open(File.expand_path('../../config/database.yml',  __FILE__)))
+ActiveRecord::Base.establish_connection(dbconfig[run_mode])
+
+require "#{Dir.pwd}/app/models/domain"
+require "#{Dir.pwd}/app/models/host"
+require "#{Dir.pwd}/app/models/hosts_service"
+require "#{Dir.pwd}/app/models/service"
+require "#{Dir.pwd}/app/models/protocol"
+require "#{Dir.pwd}/app/models/queued"
+require "#{Dir.pwd}/app/models/state_change"
+
+Forever.run do
+  # Our working directory, here we store pids/logs
+  dir Dir.pwd
+  log "#{dir}/log/monitor.log"
+  pid "#{dir}/tmp/pids/monitor.pid"
+
+  on_error do |e|
+    puts "Error #{e.message}"
+  end
+
+  on_ready do
+    puts "Monitor ready."
+  end
+
+  on_exit do
+    puts "Monitor exit."
+  end
+
+  # Collecting host data to populate service jobs
+  every 60.seconds do
+    puts "[Collector] Collecting host data to populate service jobs..."
+    
+    Domain.where( :monitor => true, :enabled => true).each do |domain|
+      puts "[Collector] Found domain #{domain.name}"
+      Host.where( :monitor => true, :enabled => true, :domain_id => domain.id).each do |host|
+        puts "[Collector] Opening host #{host.name}.#{domain.name}"
+        HostsService.where( :monitor => true, :enabled => true, :host_id => host.id).each do |host_service|
+        
+          puts "[Collector] Found #{host_service.service.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
+          puts "[Collector] Creating job for #{host_service.service.name} to #{host.name}.#{domain.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
+          
+          unless Queued.where(:host_id => host.id, :done => false)
+          
+            Queued.create( 
+              :host_id => host.id, 
+              :service_id => host_service.service.id, 
+              :interval_id => host_service.interval_id, 
+              :hosts_service_id => host_service.id,
+              :tester_id => Host.find_by_domain_id(Domain.find_by_name('localdomain')).id, 
+              :task_id => 0, 
+              :done => false, 
+              :run_at => Time.now + 300
+            )
+            puts "[Collector] Job queue created."
+          else
+            puts "[Collector] Skiping job queue creation for #{host.name}.#{domain.name}."
+          end
+          puts ""
+        end
+      end
+    end
+    puts "[Collector] Collect hosts data finished."
+  end
+  
+  every 300.seconds do
+    puts "[Tester] Starting tests..."
+    local_tester_id = Host.find_by_domain_id(Domain.find_by_name('localdomain')).id
+    Queued.where(:tester_id => local_tester_id, :done => false).where(["run_at <= ?", Time.now]).each do |queued|
+      puts "[Tester] Testing #{queued.service.name} to #{queued.host.name}.#{queued.host.domain.name} at #{queued.service.protocol.name} port #{queued.service.port}."
+      puts "[Tester] Using plugin #{queued.service.plugin}"
+      test_resut = eval("queued.#{queued.service.plugin}")
+      if test_resut == true
+        queued.host.status = true
+        queued.hosts_service.status = true
+        puts "[Tester] #{queued.service.name} Ok."
+      else
+        queued.host.status = false
+        queued.hosts_service.status = false
+        puts "[Tester] #{queued.service.name} Error."
+      end
+      queued.hosts_service.save
+      queued.host.save
+      queued.done = true
+      queued.save
+      
+    end
+    puts "[Tester] All tests done."
+    puts ""
+  end
+  
+end
