@@ -21,7 +21,7 @@
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :domain %></b></label>
-    <%= f.collection_select(:domain_id, @domain, :id, :name, {:prompt => 'Selecione'} ) %><br /><br /><br /><br />
+    <%= f.collection_select(:domain_id, @domain, :id, :name, {:prompt => 'Selecione'} ) %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :name %></b></label>
@@ -31,7 +31,7 @@
     <%= f.text_field :address %><br /><br /><br /><br />
 
     <label><b><%= I18n.t :description %></b></label>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :allow_comments %></b></label>
