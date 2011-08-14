@@ -21,3 +21,14 @@ Service.create(
   :enabled => true
 )
 
+user = User.create(:user_id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => Digest::SHA1.hexdigest('monitor') )
+
+domains = [ 'localdomain']
+
+domains.each do |domain| 
+  Domain.create( :name => domain, 
+    :user_id => user.id, 
+    :enabled => true, 
+    :monitor => true
+  )
+end
