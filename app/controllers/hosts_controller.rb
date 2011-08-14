@@ -3,7 +3,7 @@ class HostsController < ApplicationController
   respond_to :html, :xml, :js, :json
 
   def index
-    @hosts = Host.order 'created_at DESC'
+    @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     
     respond_with @hosts
   end

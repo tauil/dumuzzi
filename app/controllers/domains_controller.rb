@@ -3,7 +3,7 @@ class DomainsController < ApplicationController
   respond_to :html, :xml, :js, :json
 
   def index
-    @domains = Domain.order 'created_at DESC'
+    @domains = Domain.where(:user_id => current_user.id).order('created_at DESC')
     
     respond_with @domains
   end
