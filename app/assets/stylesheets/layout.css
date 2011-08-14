@@ -21,6 +21,8 @@ clear: both;
 height: 20px;
 }
 
+a{}
+
 a:link, a:visited {
 color: #77BACE;
 text-decoration: none;

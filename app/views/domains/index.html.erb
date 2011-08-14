@@ -1,4 +1,4 @@
-<article class="module width_3_quarter">
+<article class="module width_3_quarter" style="width:920px;">
   <header>
     <h3 class="tabs_involved"><%= I18n.t :listing_domains %></h3>
   </header>
@@ -9,6 +9,11 @@
         <thead>
           <tr>
             <th></th>
+            <th><%= I18n.t :name %></th>
+            <th><%= I18n.t :address %></th>
+            <th><%= I18n.t :status %></th>
+            <th><%= I18n.t :monitor %></th>
+            <th><%= I18n.t :enabled %></th>
             <th></th>
             <th></th>
             <th></th>
@@ -18,6 +23,11 @@
         <% @domains.each do |domain| %>
           <tr>
             <td></td>
+            <td><%= domain.name %></td>
+            <td><%= domain.address %></td>
+            <td><%= domain.status %></td>
+            <td><%= domain.monitor %></td>
+            <td><%= domain.enabled %></td>
             <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), domain %></td>
             <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit)), edit_domain_path(domain) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => domain.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>

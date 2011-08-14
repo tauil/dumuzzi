@@ -62,67 +62,7 @@
       </div>
 
       <div id="content">
-        <div id="about">
-          <%= image_tag("mascote.jpg", :width => 400, :height => 350) %>
-          <div id="slider">
-            <ul>
-              <li>
-                <h1>WHAT IS?</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
-              </li>
-              <li>
-                <h1>ABOUT</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
-              </li>
-              <li>
-                <h1>OTHERS</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque erat ipsum, vestibulum in pharetra non, malesuada quis lorem. Etiam eget semper dolor. Phasellus sagittis pulvinar justo, sed posuere ipsum venenatis non. Vestibulum ultricies arcu non leo gravida quis blandit lacus tempor. Vestibulum vehicula, mi vel congue elementum, odio orci porttitor libero, quis eleifend odio lacus vitae neque.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div id="ranks">
-          <div id="escalation">
-            <h2><p>ONLINE</p></h2>
-            <ul>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-            </ul>
-          </div>
-          <div id="escalation">
-            <h2><p>NEWEST</p></h2>
-            <ul>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-            </ul>
-          </div>
-          <div id="escalation">
-            <h2><p>SOCIAL</p></h2>
-            <ul>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-            </ul>
-          </div>
-        </div>
+        <%= yield %>
       </div>
       
       <div id="footer">
