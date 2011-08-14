@@ -9,6 +9,8 @@
         <thead>
           <tr>
             <th></th>
+            <th><%= I18n.t :id %></th>
+            <th><%= I18n.t :user %></th>
             <th><%= I18n.t :name %></th>
             <th><%= I18n.t :address %></th>
             <th><%= I18n.t :domain %></th>
@@ -24,6 +26,8 @@
         <% @hosts.each do |host| %>
           <tr>
             <td></td>
+            <td><%= host.id[0,8] %></td>
+            <td><%= host.user_id[0,8] %></td>
             <td><%= host.name %></td>
             <td><%= host.domain.name %></td>
             <td><%= host.address %></td>
@@ -42,5 +46,5 @@
 
   <br />
 
-  <%= link_to I18n.t(:new_host), new_host_path %>
+  <%= link_to I18n.t(:new_host), new_host_path(:domain_id => @domain.id) %>
 </article>
