@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<title>Admin</title>
+	<%= stylesheet_link_tag    "layout" %>
+  <%= javascript_include_tag "jquery-1.5.2.min", "hideshow", "jquery.tablesorter", "jquery.equalHeight" %>
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="/assets/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  <%= csrf_meta_tag %>
+
+</head>
+
+
+<body>
+
+	<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="/admin">Admin</a></h1>
+			<h2 class="section_title">Dashboard</h2>
+			<div class="btn_view_site">
+			  <a href="/">View Site</a>
+			</div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p>user_login</p>
+			<a class="logout_user" href="/logout" title="Logout"><%= I18n.t :logout %></a>
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs">
+			  <a href="/admin">Admin</a> 
+			  <div class="breadcrumb_divider"></div> 
+			  <a class="current">Dashboard</a>
+			</article>
+		</div>
+	</section><!-- end of secondary bar -->
+	
+	<aside id="sidebar" class="column">
+		<!--<form class="quick_search">
+			<input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+		</form>
+		<hr/>-->
+      <%= render :partial => 'shared/menu'%>
+    <footer>
+			<hr />
+			<p><strong>Copyright &copy; 2011 Cidadelas</strong></p>
+			<p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+		</footer>
+	</aside><!-- end of sidebar -->
+
+	
+	<section id="main" class="column">
+		
+    <%= yield %>
+
+	</section>
+
+</body>
+</html>
