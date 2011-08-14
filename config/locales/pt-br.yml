@@ -50,5 +50,8 @@ pt-br:
   new_queued: "Nova lista" 
   listing_services: "Listagem de serviços"
   protocol: "Protocologo"
-  new_state_change: "Nova mudança de estado"
+  new_state_change: "Lista de serviços de hosts"
+  listing_hosts_services: "Nova mudança de estado"
+  domain: "Domínio"
+  host: "Host"
 

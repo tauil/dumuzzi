@@ -51,4 +51,8 @@ en:
   protocol: "Protocol"
   new_state_change: "New state change"
   listing_domains: "Listing domains"
+  listing_hosts_services: "Listing hosts services"
+  domain: "domain"
+  host: "host"
+
 
