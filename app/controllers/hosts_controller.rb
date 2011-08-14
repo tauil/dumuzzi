@@ -30,6 +30,7 @@ class HostsController < ApplicationController
 
   def create
     @host = Host.new params[:host]
+    @host.user_id = current_user.id
     
     if @host.save
       flash[:notice] = I18n.t :host_created

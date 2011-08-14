@@ -28,6 +28,7 @@ class DomainsController < ApplicationController
 
   def create
     @domain = Domain.new params[:domain]
+    @domain.user_id = current_user.id
     
     if @domain.save
       flash[:notice] = I18n.t :domain_created
