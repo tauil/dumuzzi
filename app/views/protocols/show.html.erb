@@ -4,6 +4,18 @@
     <div class="tab_container">
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
+          <tr> 
+            <td><b><%= I18n.t :id %></b></th>
+            <td><%= @protocol.id %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :id %></b></th>
+            <td><%= @protocol.name %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :id %></b></th>
+            <td><%= @protocol.enabled %></td>            
+			    </tr>
         </table>
       </div>
     </div>
