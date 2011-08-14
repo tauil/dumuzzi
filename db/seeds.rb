@@ -32,3 +32,18 @@ domains.each do |domain|
     :monitor => true
   )
 end
+
+hostnames = [ 'www' ]
+
+hostnames.each do |hostname|
+  Domain.all.each do |domain|
+    Host.create(
+      :domain_id => domain.id,
+      :user_id => domain.user_id,
+      :name => hostname, 
+      :enabled => true, 
+      :monitor => true
+    )
+  end
+end
+

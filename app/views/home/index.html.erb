@@ -22,32 +22,28 @@
         </div>
 
         <div id="ranks">
+          <% unless @hosts.empty? %>
           <div id="escalation">
             <h2><p>ONLINE</p></h2>
             <ul>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
+              <% @hosts.each do |host| %>
+                <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
+                <li><a href="http://<%= host.domain.name %>"><%= host.domain.name %></a></li>
+              <% end %>
             </ul>
           </div>
+          <% end %>
+          <% unless @new_hosts.empty? %>
           <div id="escalation">
             <h2><p>NEWEST</p></h2>
             <ul>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
-              <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-              <li><a href="#">www.google.com.br</a></li>
+              <% @new_hosts.each do |host| %>
+                <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
+                <li><a href="http://<%= host.domain.name %>"><%= host.domain.name %></a></li>
+              <% end %>
             </ul>
           </div>
+          <% end %>
           <div id="escalation">
             <h2><p>SOCIAL</p></h2>
             <ul>
