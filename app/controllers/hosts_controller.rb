@@ -17,12 +17,14 @@ class HostsController < ApplicationController
 
   def new
     @host = Host.new(:domain_id => [ "?", params[:domain_id] ])
+    @domain = Domain.all
     
     respond_with @host
   end
 
   def edit
     @host = Host.where(:id => params[:id]).first
+    @domain = Domain.all
     respond_with @host
   end
 

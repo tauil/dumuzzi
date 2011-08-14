@@ -4,6 +4,58 @@
     <div class="tab_container">
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
+          <tr> 
+            <td><b><%= I18n.t :id %></b></th>
+            <td><%= @host.id %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :user_id %></b></th>
+            <td><%= @host.user_id %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :domain %></b></th>
+            <td><%= @host.domain.name %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :name %></b></th>
+            <td><%= @host.name %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :address %></b></th>
+            <td><%= @host.address %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :description %></b></th>
+            <td><%= @host.description %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :allow_comments %></b></th>
+            <td><%= @host.allow_comments %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :send_alert %></b></th>
+            <td><%= @host.send_alert %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :share %></b></th>
+            <td><%= @host.share %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :status %></b></th>
+            <td><%= @host.status %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :share %></b></th>
+            <td><%= @host.share %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :monitor %></b></th>
+            <td><%= @host.monitor %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :enabled %></b></th>
+            <td><%= @host.enabled %></td>            
+			    </tr>
         </table>
       </div>
     </div>
