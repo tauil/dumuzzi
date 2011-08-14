@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title><%= @warning.subject %></title>
+</head>
+
+<body>
+  
+  <div class="header">
+    <h2>Warning Mail</h2>
+  </div>
+  
+  <div class="content">
+
+    <div class="dinamic">
+      <p>Name: <%= @contact.user_name %></p>
+      <p>Domain Host: <%= @contact.domain_host %></p>
+      <p>Service: <%= @contact.service %></p>
+      <p>Status: <%= @contact.status %></p>
+    </div>
+
+    <div class="static">
+      <h2>Static Content</h2>
+      <p>Static content. Text and others.</p>
+    </div>
+  
+  </div>
+
+  <div class="footer">    
+    <h3>Footer</h3>
+    <p>Content here.</p>
+    <p>Technology by <%= link_to( '@KoshTech','http://twitter.com/KoshTech' ) %></p>
+  </div>
+  
+</body>
+</html>
+
