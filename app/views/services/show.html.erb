@@ -4,6 +4,40 @@
     <div class="tab_container">
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
+          <tr> 
+            <td><b><%= I18n.t :id %></b></th>
+            <td><%= @service.id %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :name %></b></th>
+            <td><%= @service.name %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :protocol %></b></th>
+            <td><%= @service.protocol.name %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :port %></b></th>
+            <td><%= @service.port %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :description %></b></th>
+            <td><%= @service.description %></td>            
+			    </tr>
+<!--
+          <tr> 
+            <td><b><%#= I18n.t :status %></b></th>
+            <td><%#= @service.status %></td>            
+			    </tr>
+-->
+          <tr> 
+            <td><b><%= I18n.t :monitor %></b></th>
+            <td><%= @service.monitor %></td>            
+			    </tr>
+          <tr> 
+            <td><b><%= I18n.t :enabled %></b></th>
+            <td><%= @service.enabled %></td>            
+			    </tr>
         </table>
       </div>
     </div>
