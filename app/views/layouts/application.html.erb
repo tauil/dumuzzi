@@ -48,9 +48,11 @@
 
         </div>
         <ul id="menu">
-          <a href="#">HOME</a>
+          <a href="/">HOME</a>
           <a href="#">TERMS</a>
-          <a href="#">ACCOUNT</a>
+          <% if @authentications %>
+          <a href="/domains">MY DOMAINS</a>
+          <% end %>
           <a href="#">ABOUT</a>
         </ul>
       </div>
