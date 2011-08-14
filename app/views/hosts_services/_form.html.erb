@@ -13,8 +13,8 @@
   <% end %>
 
   <fieldset>
-    <label><b><%= I18n.t :host_id %></b></label>
-    <%= f.text_field :host_id %><br /><br /><br /><br />
+    <label><b><%= I18n.t :host %></b></label>
+    <%= f.collection_select(:host_id, @host, :id, :name, {:prompt => 'Selecione'} ) %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :service %></b></label>
