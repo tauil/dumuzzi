@@ -30,8 +30,8 @@
             <td><%= host.status %></td>
             <td><%= host.monitor %></td>
             <td><%= host.enabled %></td>
-            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), host %></td>
-            <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit)), edit_host_path(host) %></td>
+            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), host %></td>
+            <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_host_path(host) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => host.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
         <% end %>

@@ -49,9 +49,9 @@
   <div class="submit_link">
     <%= f.submit %>
     <input type="reset" value="Reset">
-    <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back)), domains_path %>
+    <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), domains_path %>
     <% if params[:action] == 'edit' %>
-      <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), @domain %>
+      <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), @domain %>
     <% end %>
   </div>
 </footer>
