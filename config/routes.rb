@@ -5,5 +5,5 @@ Dumuzzi::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => 'registrations'}
   resources :authentications
 
-  root :to => "authentications#index"
+  root :to => "home#index"
 end
