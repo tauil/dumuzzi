@@ -34,9 +34,7 @@
 
     <footer>
       <div class="submit_link">
-        <%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_hosts_service_path(@hosts_service) %> |
-        <%= link_to 'Manual Test', manual_test_hosts_service_path(@hosts_service) %> |
-<%= link_to 'Threads Test', threads_test_hosts_service_path(@hosts_service) %> |
+        <%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_hosts_service_path(@hosts_service) %>
         <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), hosts_services_path %>
       </div>
     </footer>
