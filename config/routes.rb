@@ -18,6 +18,8 @@ Dumuzzi::Application.routes.draw do
 
   resources :domains
 
+  match '/terms' => 'static_pages#terms'
+
   match '/auth/:provider/callback' => 'authentications#create'
   devise_for :users, :controllers => {:registrations => 'registrations'}
   resources :authentications
