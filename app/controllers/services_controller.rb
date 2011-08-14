@@ -16,12 +16,14 @@ class ServicesController < ApplicationController
 
   def new
     @service = Service.new
+    @protocol = Protocol.all
     
     respond_with @service
   end
 
   def edit
     @service = Service.where(:id => params[:id]).first
+    @protocol = Protocol.all
     respond_with @service
   end
 

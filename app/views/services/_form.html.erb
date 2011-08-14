@@ -11,6 +11,37 @@
       </ul>
     </div>
   <% end %>
+
+  <fieldset>
+    <label><b><%= I18n.t :id %></b></label>
+    <%= f.text_field :id %><br /><br /><br /><br />
+
+    <label><b><%= I18n.t :name %></b></label>
+    <%= f.text_field :name %><br /><br /><br /><br />
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :protocol %></b></label>
+    <%= f.collection_select(:protocol_id, @protocol, :id, :name, {:prompt => 'Selecione'} ) %>
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :port %></b></label>
+    <%= f.text_field :port %><br /><br /><br /><br />
+
+    <label><b><%= I18n.t :description %></b></label>
+    <%= f.text_area :description %><br /><br /><br /><br />
+  </fieldset>
+  <fieldset>
+    <label><b><%#= I18n.t :status %></b></label>
+    <%#= f.text_field :status %><br /><br /><br /><br />
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :monitor %></b></label>
+    <%= f.check_box :monitor %><br /><br /><br /><br />
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :enabled %></b></label>
+    <%= f.check_box :enabled %><br /><br /><br /><br />
+  </fieldset>
   
 </div>
 <footer>
