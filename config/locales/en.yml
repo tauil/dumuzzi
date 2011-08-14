@@ -4,7 +4,7 @@
 en:
   hello: "Hello world"
   name: "Name"
-  address: "Naddress"
+  address: "Address"
   status: "Status" 
   monitor: "Monitor" 
   enabled: "Enabled"
