@@ -10,9 +10,10 @@
           <tr>
             <th></th>
             <th><%= I18n.t :host %></th>
-            <th><%= I18n.t :name %></th>
-            <th><%= I18n.t :name %></th>
-            <th><%= I18n.t :name %></th>
+            <th><%= I18n.t :service %></th>
+            <th><%= I18n.t :interval %></th>
+            <th><%= I18n.t :monitor %></th>
+            <th><%= I18n.t :enabled %></th>
             <th></th>
             <th></th>
             <th></th>
@@ -22,8 +23,13 @@
         <% @hosts_services.each do |hosts_service| %>
           <tr>
             <td></td>
-            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), hosts_service %></td>
-            <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit)), edit_hosts_service_path(hosts_service) %></td>
+            <td><%= hosts_service.host.name %></td>
+            <td><%= hosts_service.service.name %></td>
+            <td><%= hosts_service.interval_id %></td>
+            <td><%= hosts_service.monitor %></td>
+            <td><%= hosts_service.enabled %></td>
+            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), hosts_service %></td>
+            <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_hosts_service_path(hosts_service) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => hosts_service.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
         <% end %>

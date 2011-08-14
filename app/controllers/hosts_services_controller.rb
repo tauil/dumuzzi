@@ -25,6 +25,8 @@ class HostsServicesController < ApplicationController
 
   def edit
     @hosts_service = HostsService.where(:id => params[:id]).first
+    @services = Service.where(:enabled => true, :monitor => true)
+    @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     respond_with @hosts_service
   end
 
