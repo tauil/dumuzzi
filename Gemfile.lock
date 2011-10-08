@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/vagnerzampieri/zscaffold_admin.git
+  revision: 7f4efe3fbc9092a279d18defda30b435c99d9d27
+  specs:
+    zscaffold_admin (0.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -205,3 +211,4 @@ DEPENDENCIES
   therubyracer
   uglifier
   unicorn
+  zscaffold_admin!
