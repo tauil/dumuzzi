@@ -1,0 +1,28 @@
+development:
+  :address: smtp.server.com
+  :port: 25
+  :authentication: plain
+  :domain: actiohost.com
+  :user_name: user
+  :password: password
+  :from: multisites@cidadelas.com.br
+  :reply_to: multisites@cidadelas.com.br
+  :return_path: multisites@cidadelas.com.br
+  :to: email@server.com
+  :enable_starttls_auto: true
+  :default_url_options: http://localhost:3000
+
+production:
+  :address: smtp.server.com
+  :port: 25
+  :authentication: plain
+  :domain: actiohost.com
+  :user_name: user
+  :password: password
+  :from: multisites@cidadelas.com.br
+  :reply_to: multisites@cidadelas.com.br
+  :return_path: multisites@cidadelas.com.br
+  :to: email@server.com
+  :enable_starttls_auto: true
+  :default_url_options: http://static.server.com
+

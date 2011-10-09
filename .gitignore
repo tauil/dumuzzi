@@ -4,3 +4,4 @@ tmp/
 .sass-cache/
 db/schema.rb
 config/database.yml
+config/email.yml
