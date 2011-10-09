@@ -27,16 +27,23 @@ require "#{Dir.pwd}/app/models/protocol"
 require "#{Dir.pwd}/app/models/queued"
 require "#{Dir.pwd}/app/models/state_change"
 
-def has_connection?
+def has_connection?(cached=false)
   domain = Domain.find_by_name('localdomain')
   tester = Host.find_by_domain_id(domain)
-  unless Service.gateway_test_ping(tester)
-    puts "Gateway error. Tests are disabled."
-    return false
+  unless cached
+    unless Service.gateway_test_ping(tester)
+      puts "[Network] Gateway error. Tests are disabled."
+      tester.gateway_state = false
+      tester.save
+      return false
+    else
+      puts "[Network] Gateway OK. Tests are enabled."
+      tester.gateway_state = true
+      tester.save
+      return true
+    end
   else
-    puts "Gateway OK. Tests are enabled."
-    connection_state = true
-    return true
+    return tester.gateway_state
   end
 end
 
@@ -47,21 +54,19 @@ Forever.run do
   pid "#{dir}/tmp/pids/monitor.pid"
 
   on_ready do
-    puts "Monitor initialiging"
-    puts "Monitor ready."
+    puts "[System] Monitor initialiging"
+    puts "[System] Monitor ready."
   end
 
   # Collecting host data to populate service jobs
   every 11.seconds do
-    if has_connection?
+    if has_connection?(true)
       puts "[Collector] Collecting host data to populate service jobs..."
-      
       Domain.where( :monitor => true, :enabled => true).each do |domain|
         puts "[Collector] Found domain #{domain.name}"
         Host.where( :monitor => true, :enabled => true, :domain_id => domain.id).each do |host|
           puts "[Collector] Opening host #{host.name}.#{domain.name}"
           HostsService.where( :monitor => true, :enabled => true, :host_id => host.id).each do |host_service|
-          
             puts "[Collector] Found #{host_service.service.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
             queued_services = Queued.where(:host_id => host.id, :done => false)
             puts "queued_services === #{queued_services.size} queued_services.empty? #{queued_services.empty?}"
@@ -81,14 +86,13 @@ Forever.run do
             else
               puts "[Collector] Skiping job queue creation for #{host.name}.#{domain.name}."
             end
-            puts ""
           end
         end
       end
+      puts "[Collector] Collect hosts data finished."
     else
       puts '[Collector] No network connection available. Tests are disabled.'
     end
-    puts "[Collector] Collect hosts data finished."
   end
   
   every 19.seconds do
@@ -113,22 +117,21 @@ Forever.run do
         queued.hosts_service.save
         queued.host.save
         queued.done = true
-        queued.saveputs '[Tester] No network connection available. Tests are disabled.'
-        
+        queued.save
+        puts '[Tester] No network connection available. Tests are disabled.'
       end
         puts "[Tester] All tests done."
     else
       puts '[Tester] No network connection available. Tests are disabled.'
     end
-    puts ""
   end
 
   on_error do |e|
-    puts "Error #{e.message}"
+    puts "[System] Error #{e.message}"
   end
 
   on_exit do
-    puts "Monitor exit."
+    puts "[System] Monitor exit."
   end
 
 end

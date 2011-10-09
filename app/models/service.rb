@@ -14,9 +14,9 @@ class Service < ActiveRecord::Base
   end
 
   def self.gateway_test_ping(hostname)
-    puts "Local tester id: #{hostname.id}"
-    puts "Gateway: #{hostname.gateway}"
-    puts "Testing connection..."
+    puts "[Network] Local tester id: #{hostname.id}"
+    puts "[Network] Gateway: #{hostname.gateway}"
+    puts "[Network] Testing connection..."
     Net::Ping::External.new(hostname.gateway).ping
   end
 
