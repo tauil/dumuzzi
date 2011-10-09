@@ -23,7 +23,7 @@ gem 'omniauth'
 gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
 
 # Daemon
-gem 'foreverb'
+gem 'foreverb', :git => 'git://github.com/DAddYE/foreverb.git'
 
 # For networking
 gem 'net-ping'

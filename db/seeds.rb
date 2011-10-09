@@ -33,7 +33,7 @@ domains.each do |domain|
   )
 end
 
-hostnames = [ 'www' ]
+hostnames = [ 'localhost' ]
 
 hostnames.each do |hostname|
   Domain.all.each do |domain|
@@ -42,7 +42,9 @@ hostnames.each do |hostname|
       :user_id => domain.user_id,
       :name => hostname, 
       :enabled => true, 
-      :monitor => true
+      :monitor => true,
+      :tester => true,
+      :gateway => '0.0.0.0'
     )
   end
 end
