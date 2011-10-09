@@ -6,7 +6,7 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
-require "active_record"
+require 'rails/all'
 require 'forever'
 require 'mail'
 require 'yaml'
@@ -20,6 +20,9 @@ require "#{Dir.pwd}/lib/dumuzzi-monitor"
 dbconfig = YAML::load(File.open(File.expand_path('../../config/database.yml',  __FILE__)))
 ActiveRecord::Base.establish_connection(dbconfig[run_mode])
 
+email_settings = YAML::load(File.open("#{Dir.pwd}/config/email.yml"))
+ActionMailer::Base.smtp_settings = email_settings[run_mode]
+#ActionMailer::Base.default_url_options[:host] = ActionMailer::Base.smtp_settings[:default_url_options]
 
 Forever.run do
   # Our working directory, here we store pids/logs

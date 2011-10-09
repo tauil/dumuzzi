@@ -22,7 +22,7 @@ module DumuzziMonitor
           domain.status = false
           queued.host.status = false
           queued.hosts_service.status = false
-  #        DumuzziMailer.warning_message(queued).deliver
+          DumuzziMailer.warning_message(queued).deliver
           puts "[Tester] #{queued.service.name} Error."
         end
         domain.save
