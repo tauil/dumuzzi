@@ -1,3 +1,15 @@
+require "active_record/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
+require "#{Dir.pwd}/app/models/domain"
+require "#{Dir.pwd}/app/models/host"
+require "#{Dir.pwd}/app/models/hosts_service"
+require "#{Dir.pwd}/app/models/service"
+require "#{Dir.pwd}/app/models/protocol"
+require "#{Dir.pwd}/app/models/queued"
+require "#{Dir.pwd}/app/models/state_change"
+require "#{Dir.pwd}/app/models/status"
+require "#{Dir.pwd}/app/mailers/dumuzzi_mailer"
 module DumuzziMonitor
   extend self
   
@@ -14,14 +26,16 @@ module DumuzziMonitor
         puts "[Tester] Using plugin #{queued.service.plugin}"
         test_resut = eval("queued.#{queued.service.plugin}")
         if test_resut == true
-          domain.status = true
-          queued.host.status = true
-          queued.hosts_service.status = true
+          domain.status_id = 1
+          queued.host.status_id = 1
+          queued.hosts_service.status_id = 1
+          queued.event_description
           puts "[Tester] #{queued.service.name} Ok."
         else
-          domain.status = false
-          queued.host.status = false
-          queued.hosts_service.status = false
+          domain.status_id = 0
+          queued.host.status_id = 0
+          queued.hosts_service.status_id = 0
+          queued.event_description
           DumuzziMailer.warning_message(queued).deliver
           puts "[Tester] #{queued.service.name} Error."
         end
