@@ -39,11 +39,11 @@ Forever.run do
   end
 
   # Collecting host data to populate service jobs
-  every 11.seconds do
+  every 29.seconds do
     DumuzziMonitor::collector
   end
   
-  every 19.seconds do
+  every 61.seconds do
     DumuzziMonitor::tester
   end
 
