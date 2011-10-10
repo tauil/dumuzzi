@@ -3,6 +3,7 @@ class HostsService < ActiveRecord::Base
   belongs_to :host
   belongs_to :service
   belongs_to :status
+  belongs_to :interval_id
   has_many :queueds
   
   def generate_ids
