@@ -23,6 +23,9 @@ ActiveRecord::Base.establish_connection(dbconfig[run_mode])
 email_settings = YAML::load(File.open("#{Dir.pwd}/config/email.yml"))
 ActionMailer::Base.smtp_settings = email_settings[run_mode]
 #ActionMailer::Base.default_url_options[:host] = ActionMailer::Base.smtp_settings[:default_url_options]
+ActionMailer::Base.config.template_root = "#{Dir.pwd}/app/views/dumuzzi_mailer/"
+ActionMailer::Base.config.delivery_method = :sendmail
+ActionMailer::Base.config.logger = Logger.new(STDOUT)
 
 Forever.run do
   # Our working directory, here we store pids/logs
