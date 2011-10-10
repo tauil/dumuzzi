@@ -28,7 +28,7 @@
             <ul>
               <% @hosts.each do |host| %>
                 <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-                <li><a href="http://<%= host.domain.name %>"><%= host.domain.name %></a></li>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
               <% end %>
             </ul>
           </div>
@@ -39,7 +39,7 @@
             <ul>
               <% @new_hosts.each do |host| %>
                 <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-                <li><a href="http://<%= host.domain.name %>"><%= host.domain.name %></a></li>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
               <% end %>
             </ul>
           </div>

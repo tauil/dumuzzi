@@ -21,6 +21,10 @@
             <td><%= @hosts_service.description %></td>            
 			    </tr>
           <tr> 
+            <td><b><%= I18n.t :status %></b></th>
+            <td><%= @hosts_service.status.name %></td>
+			    </tr>
+          <tr> 
             <td><b><%= I18n.t :monitor %></b></th>
             <td><%= @hosts_service.monitor %></td>            
 			    </tr>
