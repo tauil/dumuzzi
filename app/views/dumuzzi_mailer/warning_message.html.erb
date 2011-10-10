@@ -14,15 +14,14 @@
   <div class="content">
 
     <div class="dinamic">
-      <p>Name: <%= @warning.host.name %></p>
-      <p>Domain Host: <%= @warning.host.domain.name %></p>
+      <p>Hostname: <%= @warning.host.hostname %></p>
       <p>Service: <%= @warning.service.name %></p>
       <p>Status: <%= @warning.host.status %></p>
     </div>
 
     <div class="static">
-      <h2>Static Content</h2>
-      <p>Static content. Text and others.</p>
+      <h2><%= I18n.t :message %></h2>
+      <p><%= simple_format(@warning.body) %></p>
     </div>
   
   </div>

@@ -1,12 +1,12 @@
-<%= @warning.host.name %>
-  
+<%#= @warning.subject %>
 
+<%= @warning.host.name %>
 <%= @warning.host.status %>
 
-Static Content
-Static content. Text and others.
-  
-Footer
-Content here.
+<%= I18n.t :message %>:
+
+<%= @warning.body %>
+
+Technology by @Cidadelas: http://twitter.com/cidadelas
 
 Technology by @KoshTech: http://twitter.com/KoshTech
