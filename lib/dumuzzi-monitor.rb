@@ -1,5 +1,4 @@
 require "active_record"
-require "action_mailer"
 require "#{Dir.pwd}/app/models/domain"
 require "#{Dir.pwd}/app/models/host"
 require "#{Dir.pwd}/app/models/hosts_service"
@@ -7,6 +6,7 @@ require "#{Dir.pwd}/app/models/service"
 require "#{Dir.pwd}/app/models/protocol"
 require "#{Dir.pwd}/app/models/queued"
 require "#{Dir.pwd}/app/models/state_change"
+require "#{Dir.pwd}/app/models/status"
 require "#{Dir.pwd}/app/mailers/dumuzzi_mailer"
 require "#{Dir.pwd}/lib/dumuzzi-monitor/collector"
 require "#{Dir.pwd}/lib/dumuzzi-monitor/tester"
@@ -14,8 +14,8 @@ require "#{Dir.pwd}/lib/dumuzzi-monitor/tester"
 module DumuzziMonitor
   extend self
   def has_connection?(cached=false)
-    domain = Domain.find_by_name('localdomain')
-    tester = Host.find_by_domain_id(domain)
+    domain = Domain.where(:name => 'localdomain')[0]
+    tester = Host.where(:name => 'localhost', :domain_id => domain.id)[0]
     unless cached
       unless Service.gateway_test_ping(tester)
         puts "[Network] Gateway error. Tests are disabled."
