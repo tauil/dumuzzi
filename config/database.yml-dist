@@ -11,6 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
+  # host: localhost 
   reconnect: false
   database: dumuzzi_development
   pool: 5
@@ -24,6 +25,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
+  # host: localhost 
   reconnect: false
   database: dumuzzi_test
   pool: 5
@@ -34,6 +36,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
+  # host: localhost 
   reconnect: false
   database: dumuzzi_production
   pool: 5
