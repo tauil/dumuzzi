@@ -2,6 +2,7 @@ class HostsService < ActiveRecord::Base
   before_create :generate_ids
   belongs_to :host
   belongs_to :service
+  belongs_to :status
   has_many :queueds
   
   def generate_ids
