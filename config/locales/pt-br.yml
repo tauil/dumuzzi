@@ -54,4 +54,5 @@ pt-br:
   listing_hosts_services: "Nova mudança de estado"
   domain: "Domínio"
   host: "Host"
-
+  domain_created: "Domínio Criado"
+  user: "Usuário"

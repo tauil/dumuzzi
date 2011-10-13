@@ -1,5 +1,4 @@
 class DomainsController < ApplicationController    
-  layout 'admin'
   respond_to :html, :xml, :js, :json
 
   def index

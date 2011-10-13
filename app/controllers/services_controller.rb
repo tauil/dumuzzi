@@ -1,5 +1,4 @@
 class ServicesController < ApplicationController    
-  layout 'admin'
   respond_to :html, :xml, :js, :json
 
   def index

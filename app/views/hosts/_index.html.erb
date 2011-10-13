@@ -1,14 +1,10 @@
-<article class="module width_3_quarter" style="width:920px;">
-  <header>
-    <h3 class="tabs_involved"><%= I18n.t :listing_hosts %></h3>
-  </header>
-
+<div id="crud">
+  <h3 class="tabs_involved"><%= I18n.t :listing_hosts %></h3>
   <div class="tab_container">
 	  <div id="tab1" class="tab_content">
       <table class="tablesorter" cellspacing="0">
         <thead>
           <tr>
-            <th></th>
             <th><%= I18n.t :id %></th>
             <th><%= I18n.t :user %></th>
             <th><%= I18n.t :name %></th>
@@ -25,7 +21,6 @@
         <tbody>
         <% @hosts.each do |host| %>
           <tr>
-            <td></td>
             <td><%= host.id[0,8] %></td>
             <td><%= host.user_id[0,8] %></td>
             <td><%= host.name %></td>
@@ -47,4 +42,4 @@
   <br />
 
   <%= link_to I18n.t(:new_host), new_host_path(:domain_id => @domain.id) %>
-</article>
+</div>

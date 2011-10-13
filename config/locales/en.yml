@@ -54,5 +54,6 @@ en:
   listing_hosts_services: "Listing hosts services"
   domain: "domain"
   host: "host"
-
+  domain_created: "Domain Created"
+  user: "User"
 
