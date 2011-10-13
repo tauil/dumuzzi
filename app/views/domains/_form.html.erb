@@ -13,11 +13,11 @@
   <% end %>
 
   <fieldset>
-
-    <label><b><%= I18n.t :name %></b></label>
-    <%= f.text_field :name %><br /><br /><br /><br />
-
-    <label><b><%= I18n.t :description %></b></label>
+    <label><b><%= I18n.t :name %></b></label><br />
+    <%= f.text_field :name %>
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :description %></b></label><br />
     <%= f.text_area :description, :rows => 5 %>
   </fieldset>
   <fieldset>
@@ -41,7 +41,6 @@
   </fieldset>
   
 </div>
-<footer>
   <div class="submit_link">
     <%= f.submit %>
     <input type="reset" value="Reset">
@@ -50,5 +49,4 @@
       <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), @domain %>
     <% end %>
   </div>
-</footer>
 <% end %>

@@ -1,75 +1,70 @@
 <!DOCTYPE html>
-
+<html lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-    <title>Dumuzzi</title>
-
-    <meta name="language" content="en" />
-    <meta name="description" content="Updating Windows using Microsoft Update" />
-    <meta name="keywords" content="updating, windows, microsoft, update, techworld" />
-
-    <%= stylesheet_link_tag    "style.css.scss.erb" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-
-    
-    <%= javascript_include_tag "jquery.js" %>
-    <%= javascript_include_tag "easySlider1.7.js" %>
-	  <script type="text/javascript">
-		  $(document).ready(function(){	
-			  $("#slider").easySlider({
-				  auto: true, 
-				  prevText: '<%= image_tag("botao1.png", :width => 30, :height => 30, :border => 0) %>',
-				  nextText: '<%= image_tag("botao2.png", :width => 30, :height => 30, :border => 0) %>',
-			    pause: 8000,
-				  continuous: true
-			  });
-		  });	
-	  </script>
-
-  </head>
+    <meta charset="utf-8"/>
+	  <title>Dumuzzi</title>
+	  <meta name="keywords" content="layout css3 javascript jquery html5"/>
+    <meta name="description" content="Este é um layout base."/>
+	  <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />-->
+    <%= stylesheet_link_tag    "layout.css.scss.erb" %>
+	</head>
   <body>
-    <div id="centralize">
-      <div id="header">
-        <%= link_to(image_tag("damuzzilogoteste2.png", :width => 300, :border => 0), '/') %>
-        <div id="subheader">
-          <% if @authentications %>
-          <div id="login">
-            <%= image_tag("user.png", :width => 60, :height => 60, :border => 0) %>
-            <p>Logado</p>
-          </div>
-          <% else %>
-          <div id="logout">
-            <p>Faça o login:</p>
-            <a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0) %></a>
-          </div>
-          <% end %>
-
-        </div>
-        <ul id="menu">
-          <a href="/">HOME</a>
-          <a href="/terms">TERMS</a>
-          <% if @authentications %>
-          <a href="/domains">MY DOMAINS</a>
-          <% end %>
-          <a href="/about">ABOUT</a>
-        </ul>
-      </div>
-
-      <div id="content">
-        <%= yield %>
-      </div>
+    <div id="container">
+      <header>
+        <h2>DUMUZZI</h2>
+        <nav>
+          <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/terms">TERMS</a></li>
+            <li><a href="/about">ABOUT</a></li>
+          </ul>
+        </nav>
+      </header>
       
-      <div id="footer">
-        <p><b>CIDADELAS JEDIS</b></p>
-        <p class="license"><b>Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)</b></p>
-        <%= image_tag("css.png", :width => 30, :height => 30, :border => 0) %>
-        <%= image_tag("html.png", :width => 30, :height => 30, :border => 0) %>
-        <%= image_tag("rails.png", :width => 30, :height => 30, :border => 0) %>
-        <%= image_tag("ruby.png", :width => 30, :height => 30, :border => 0) %>
-        <%= image_tag("jquery.png", :width => 30, :height => 30, :border => 0) %>
-      </div>
+      <section>
+        <ul>
+        <% if @authentications %>
+          <%= image_tag("user.png", :width => 60, :height => 60, :border => 0, :alt => "LOGADO", :title => "LOGADO") %>
+          <li><a href="/domains">Domain</a></li>
+        <% else %>
+          <li><a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0, :alt => "FAÇA LOGIN", :title => "FAÇA LOGIN") %></a></li>
+        <% end %>
+        </ul>
+        <article>
+          <%= yield %>
+        </article>
+        
+        <aside>
+          <div id="social">
+            <h1>SOCIAL</h1>
+            <iframe src="http://www.facebook.com/plugins/like.php?app_id=132542963506807&amp;href=http%3A%2F%2Frally.dumuzzi.com%2F&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:90px;" allowTransparency="true"></iframe>
+          </div>
+          <% unless @hosts.nil? %>
+          <div id="online">
+            <h1>ONLINE</h1>
+            <ul>
+              <% @hosts.each do |host| %>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <% unless @new_hosts.nil? %>
+          <div id="newest">
+            <h1>NEWEST</h1>
+            <ul>
+              <% @new_hosts.each do |host| %>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+        </aside>
+      </section>
+      
+      <footer>
+        <b>Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)</b>
+      </footer>
     </div>
   </body>
-</html>
+</html>  

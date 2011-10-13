@@ -2,25 +2,22 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 
+# Asset template engines
+gem 'sass-rails'
+gem 'coffee-script'
+gem 'uglifier'
+gem 'sprockets', :git => "https://github.com/sstephenson/sprockets.git"
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
 
 gem 'jquery-rails'
+
+# JavaScript runtime:
 gem 'therubyracer'
+
 gem 'devise'
 gem 'omniauth'
-gem 'zscaffold_admin', :git => 'git://github.com/vagnerzampieri/zscaffold_admin.git'
 
 # Daemon
 gem 'foreverb', :git => 'git://github.com/DAddYE/foreverb.git'
@@ -36,4 +33,9 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
+end
 

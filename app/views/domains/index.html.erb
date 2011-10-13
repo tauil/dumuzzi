@@ -1,14 +1,10 @@
-<article class="module width_3_quarter" style="width:920px;">
-  <header>
-    <h3 class="tabs_involved"><%= I18n.t :listing_domains %></h3>
-  </header>
-
+<div id="crud">
+  <h3 class="tabs_involved"><%= I18n.t :listing_domains %></h3>
   <div class="tab_container">
 	  <div id="tab1" class="tab_content">
       <table class="tablesorter" cellspacing="0">
         <thead>
           <tr>
-            <th></th>
             <th><%= I18n.t :name %></th>
             <th><%= I18n.t :address %></th>
             <th><%= I18n.t :status %></th>
@@ -22,14 +18,13 @@
         <tbody>
         <% @domains.each do |domain| %>
           <tr>
-            <td></td>
             <td><%= domain.name %></td>
             <td><%= domain.address %></td>
             <td><%= domain.status.name %></td>
             <td><%= domain.monitor %></td>
             <td><%= domain.enabled %></td>
-            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), domain %></td>
-            <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(domain) %></td>
+            <td><%= link_to image_tag("icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), domain %></td>
+            <td><%= link_to image_tag("icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(domain) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => domain.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
         <% end %>
@@ -41,4 +36,4 @@
   <br />
 
   <%= link_to I18n.t(:new_domain), new_domain_path %>
-</article>
+</div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>Dumuzzi</title>
+
+    <meta name="language" content="en" />
+    <meta name="description" content="Updating Windows using Microsoft Update" />
+    <meta name="keywords" content="updating, windows, microsoft, update, techworld" />
+
+    <%= stylesheet_link_tag    "style.css.scss.erb" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    
+    <%= javascript_include_tag "jquery.js" %>
+    <%= javascript_include_tag "easySlider1.7.js" %>
+	  <script type="text/javascript">
+		  $(document).ready(function(){	
+			  $("#slider").easySlider({
+				  auto: true, 
+				  prevText: '<%= image_tag("botao1.png", :width => 30, :height => 30, :border => 0) %>',
+				  nextText: '<%= image_tag("botao2.png", :width => 30, :height => 30, :border => 0) %>',
+			    pause: 8000,
+				  continuous: true
+			  });
+		  });	
+	  </script>
+
+  </head>
+  <body>
+    <div id="centralize">
+      <div id="header">
+        <%= link_to(image_tag("damuzzilogoteste2.png", :width => 300, :border => 0), '/') %>
+        <div id="subheader">
+          <% if @authentications %>
+          <div id="login">
+            <%= image_tag("user.png", :width => 60, :height => 60, :border => 0) %>
+            <p>Logado</p>
+          </div>
+          <% else %>
+          <div id="logout">
+            <p>Faça o login:</p>
+            <a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0) %></a>
+          </div>
+          <% end %>
+
+        </div>
+        <ul id="menu">
+          <a href="/">HOME</a>
+          <a href="/terms">TERMS</a>
+          <% if @authentications %>
+          <a href="/domains">MY DOMAINS</a>
+          <% end %>
+          <a href="/about">ABOUT</a>
+        </ul>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+      </div>
+      
+      <div id="footer">
+        <p><b>CIDADELAS JEDIS</b></p>
+        <p class="license"><b>Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)</b></p>
+        <%= image_tag("css.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("html.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("rails.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("ruby.png", :width => 30, :height => 30, :border => 0) %>
+        <%= image_tag("jquery.png", :width => 30, :height => 30, :border => 0) %>
+      </div>
+    </div>
+  </body>
+</html>
