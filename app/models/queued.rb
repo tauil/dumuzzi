@@ -4,9 +4,11 @@ require 'net/http'
 class Queued < ActiveRecord::Base
   before_create :generate_ids
   belongs_to :host
-  belongs_to :tester, :class_name => :host, :foreign_key => :tester_id
+  belongs_to :tester, :class_name => 'Host'
   belongs_to :service
   belongs_to :hosts_service
+  belongs_to :interval
+  belongs_to :status
   
   def event_description
     self.description = "Host stage change detected on #{host.hostname}.
@@ -18,7 +20,30 @@ Test by {ID}"
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
   end
-  
+
+  def new_status
+    last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')
+    if last_status.empty?
+      last_status_id = '-1'
+    else
+      last_status_id = last_status.status_id
+    end
+    
+    status_change = StatusChange.new(
+      :host => self.host_id,
+      :hosts_service => self.hosts_service_id,
+      :tester_id => self.tester_id,
+      :service => self.service_id,
+      :interval => self.interval_id,
+      :from_status_id => last_status_id,
+      :to_status_id => self.hosts_service.status_id,
+      :description => self.description,
+      :status => self.hosts_service.status_id
+    )
+    status_change.save
+    DumuzziMailer.warning_message(status_change).deliver
+  end
+
   def internal_ping
     hostname = "#{host.hostname}"
     Service::internal_ping(hostname)
