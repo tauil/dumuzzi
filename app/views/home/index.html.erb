@@ -1,19 +1,18 @@
         <div id="about">
-          <%= image_tag("mascote.jpg", :width => 400, :height => 350) %>
           <div id="slider">
             <ul>
               <li>
-                <h1>what is?</h1>
+                <h1>O que é?</h1>
                 <%= image_tag("radar2.png", :width => 150, :height => 150, :border => 0) %>
                 <p>A utilização do serviço é totalmente gratuita e sem restrições, limitações e outra imposições, podendo utilizá-lo qualquer pessoa que queria monitorar um website.</p>
               </li>
               <li>
-                <h1>about</h1>
+                <h1>Como surgiu</h1>
                 <%= image_tag("rally-on-rails-logo.png", :width => 280, :height => 150, :border => 0) %>
                 <p>Dumuzzi nasceu na competição Rally on Rails, feito pela Equipe Cidadelas Jedis e é distribuído sob a licença CDDL e está aberto a colaborações. Fique a vontade para usar, contribuir, modificar eaperfeiçoar.</p>
               </li>
               <li>
-                <h1>proposal</h1>
+                <h1>Proposta</h1>
                 <%= image_tag("rede.png", :width => 150, :height => 150, :border => 0) %>
                 <p>Nossa proposta é um serviço simples de monitoramento que, inicialmente testa a disponibilidade e tempo de reposta destes serviços. Nesta página, listamos os termos para utilização do serviço e nossas limitações de responsabilidade.</p>
               </li>
@@ -22,32 +21,5 @@
         </div>
 
         <div id="ranks">
-          <% unless @hosts.empty? %>
-          <div id="escalation">
-            <h2><p>ONLINE</p></h2>
-            <ul>
-              <% @hosts.each do |host| %>
-                <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
-              <% end %>
-            </ul>
-          </div>
-          <% end %>
-          <% unless @new_hosts.empty? %>
-          <div id="escalation">
-            <h2><p>NEWEST</p></h2>
-            <ul>
-              <% @new_hosts.each do |host| %>
-                <%= image_tag("robo.png", :width => 40, :height => 40, :border => 0) %>
-                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
-              <% end %>
-            </ul>
-          </div>
-          <% end %>
-          <div id="escalation">
-            <h2><p>SOCIAL</p></h2>
-            <ul>
-              <li><iframe src="http://www.facebook.com/plugins/like.php?app_id=132542963506807&amp;href=http%3A%2F%2Frally.dumuzzi.com%2F&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:90px;" allowTransparency="true"></iframe></li>
-            </ul>
-          </div>
+          
         </div>

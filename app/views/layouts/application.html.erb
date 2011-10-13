@@ -6,7 +6,7 @@
 	  <meta name="keywords" content="layout css3 javascript jquery html5"/>
     <meta name="description" content="Este é um layout base."/>
 	  <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />-->
-    <link href="stylesheets/layout.css" media="all" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag    "layout.css.scss.erb" %>
 	</head>
   <body>
     <div id="container">
@@ -24,11 +24,34 @@
       <section>
         <h1>Section</h1>
         <article>
-          <h1>Article</h1>
+          <%= yield %>
         </article>
         
         <aside>
-          <h1>Aside</h1>
+          <div id="social">
+            <h1>SOCIAL</h1>
+            <iframe src="http://www.facebook.com/plugins/like.php?app_id=132542963506807&amp;href=http%3A%2F%2Frally.dumuzzi.com%2F&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:90px;" allowTransparency="true"></iframe>
+          </div>
+          <% unless @hosts.empty? %>
+          <div id="online">
+            <h1>ONLINE</h1>
+            <ul>
+              <% @hosts.each do |host| %>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <% unless @new_hosts.empty? %>
+          <div id="newest">
+            <h1>NEWEST</h1>
+            <ul>
+              <% @new_hosts.each do |host| %>
+                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
         </aside>
       </section>
       

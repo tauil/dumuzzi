@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  background-color: #CFCFCF;
+}
+
+ul, li {
+  list-style:none;
+}
+
+a {
+  text-decoration:none;
+}
+
+#container {
+  /*border: 1px solid gray;*/
+  margin: 0 10%;
+}
+
+header {
+  border: 1px solid black;
+  margin-top: 10px;
+  height: 150px;
+  text-align: center;
+  background: url(<%= asset_path "kosh-tech-logo.png" %>) #696969 scroll left 10px no-repeat;
+  -moz-border-radius: 13px 13px 0px 0px;
+  -webkit-border-radius: 13px 13px 0px 0px;
+}
+
+header nav {
+  float:right;
+  padding:13px 24px 0 0;
+}
+
+header nav li {
+  float:left;
+  font-size:15px;
+  line-height:3em;
+  text-transform:uppercase;
+  padding-left:21px;
+  margin-left:19px;
+}
+
+header nav li:first-child {
+  background:none;
+  padding-left:0;
+  margin-left:0;
+}
+
+header nav li a {
+  color:#000;
+  text-decoration:none;
+}
+
+header nav li.current a, header nav li a:hover {
+  color:#CFCFCF;
+}
+
+section {
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+  background-color: #838B8B;
+}
+
+article {
+  border: 1px solid black;
+  width: 70%;
+  float: left;
+  background-color: #C1CDCD;
+}
+
+article p {
+  width: 600px;
+}
+
+aside {
+  border: 1px solid black;
+  text-align: center;
+  width: 29%;
+  float: right;
+  background-color: #E0EEEE;
+}
+
+aside li {
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+footer {
+  border: 1px solid black;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 10px;
+  height: 100%;
+  background-color: #696969;
+  -moz-border-radius: 0px 0px 13px 13px;
+  -webkit-border-radius: 0px 0px 13px 13px;
+}
