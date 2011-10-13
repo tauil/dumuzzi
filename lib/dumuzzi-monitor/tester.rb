@@ -9,6 +9,7 @@ require "#{Dir.pwd}/app/models/protocol"
 require "#{Dir.pwd}/app/models/queued"
 require "#{Dir.pwd}/app/models/status_change"
 require "#{Dir.pwd}/app/models/status"
+require "#{Dir.pwd}/app/models/interval"
 require "#{Dir.pwd}/app/mailers/dumuzzi_mailer"
 module DumuzziMonitor
   extend self
@@ -36,9 +37,13 @@ module DumuzziMonitor
           queued.host.status_id = 0
           queued.hosts_service.status_id = 0
           queued.event_description
-          DumuzziMailer.warning_message(queued).deliver
           puts "[Tester] #{queued.service.name} Error."
         end
+        
+        if queued.hosts_service.status_changed?
+          queued.new_status
+        end
+        
         domain.save
         queued.hosts_service.save
         queued.host.save
