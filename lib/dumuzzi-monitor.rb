@@ -1,4 +1,7 @@
-require "active_record"
+require 'rubygems'
+require "active_record/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
 require "#{Dir.pwd}/app/models/domain"
 require "#{Dir.pwd}/app/models/host"
 require "#{Dir.pwd}/app/models/hosts_service"
