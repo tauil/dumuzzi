@@ -1,3 +1,5 @@
+require 'net/ping'
+require 'net/http'
 class Service < ActiveRecord::Base
   before_create :generate_ids
   belongs_to :protocol
