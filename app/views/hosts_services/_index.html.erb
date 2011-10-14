@@ -1,14 +1,10 @@
-<article class="module width_3_quarter" style="width:920px;">
-  <header>
-    <h3 class="tabs_involved"><%= I18n.t :listing_hosts_services %></h3>
-  </header>
-
+<div id="crud" >
+  <h3 class="tabs_involved"><%= I18n.t :listing_hosts_services %></h3>
   <div class="tab_container">
 	  <div id="tab1" class="tab_content">
       <table class="tablesorter" cellspacing="0">
         <thead>
           <tr>
-            <th></th>
             <th><%= I18n.t :host %></th>
             <th><%= I18n.t :service %></th>
             <th><%= I18n.t :interval %></th>
@@ -23,7 +19,6 @@
         <tbody>
         <% @hosts_service.each do |hosts_service| %>
           <tr>
-            <td></td>
             <td><%= hosts_service.host.name %></td>
             <td><%= hosts_service.service.name %></td>
             <td><%= hosts_service.interval.name %></td>
@@ -43,4 +38,4 @@
   <br />
 
   <%= link_to I18n.t(:new_hosts_service), new_hosts_service_path(:host_id => @host.id) %>
-</article>
+</div>

@@ -21,24 +21,24 @@
     <%= f.collection_select(:service_id, @services, :id, :name, {:prompt => 'Selecione'} ) %>
   </fieldset>
   <fieldset>
-
     <label><b><%= I18n.t :interval %></b></label>
-    <%= f.collection_select(:interval_id, @intervals, :id, :name, {:prompt => 'Selecione'} ) %><br /><br /><br /><br />
-
-    <label><b><%= I18n.t :description %></b></label>
+    <%= f.collection_select(:interval_id, @intervals, :id, :name, {:prompt => 'Selecione'} ) %>
+  </fieldset>
+  <fieldset>
+    <label><b><%= I18n.t :description %></b></label><br />
     <%= f.text_area :description, :rows => 5 %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :monitor %></b></label>
-    <%= f.check_box :monitor %><br /><br /><br /><br />
+    <%= f.check_box :monitor %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :enabled %></b></label>
-    <%= f.check_box :enabled %><br /><br /><br /><br />
+    <%= f.check_box :enabled %>
   </fieldset>
   
 </div>
-<footer>
+
   <div class="submit_link">
     <%= f.submit %>
     <input type="reset" value="Reset">
@@ -47,5 +47,5 @@
       <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), @hosts_service %>
     <% end %>
   </div>
-</footer>
+
 <% end %>
