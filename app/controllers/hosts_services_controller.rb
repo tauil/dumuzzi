@@ -17,6 +17,7 @@ class HostsServicesController < ApplicationController
     @hosts_service = HostsService.new :host_id => params[:host_id]
     @hosts_service.user_id = @hosts_service.host.user_id unless @hosts_service.host.nil?
     @services = Service.where(:enabled => true, :monitor => true)
+    @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     
     respond_with @hosts_service
@@ -25,6 +26,7 @@ class HostsServicesController < ApplicationController
   def edit
     @hosts_service = HostsService.where(:id => params[:id]).first
     @services = Service.where(:enabled => true, :monitor => true)
+    @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     respond_with @hosts_service
   end
