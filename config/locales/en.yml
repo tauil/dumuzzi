@@ -56,4 +56,5 @@ en:
   host: "host"
   domain_created: "Domain Created"
   user: "User"
-
+  event_description: "Event Description "
+  host_detail: "Host Detail"

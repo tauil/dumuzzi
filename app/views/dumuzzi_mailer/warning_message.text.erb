@@ -1,11 +1,14 @@
-<%#= @warning.subject %>
+Warning Mail
+
+<%= I18n.t :event_description %>:
+
+<%= @warning.description %>
+
+<%= I18n.t :host_detail %>:
 
 Hostname: <%= @warning.host.hostname %>
 Service: <%= @warning.service.name %>
 Status: <%= @warning.host.status.name %>
-<%= I18n.t :message %>:
-<%= @warning.description %>
-
 
 Dumuzzi Monitor, your free choice to services monitoring
 Technology by @KoshTech: http://twitter.com/KoshTech

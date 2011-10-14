@@ -13,15 +13,19 @@
   
   <div class="content">
 
+
+
     <div class="dinamic">
+      <h3><%= I18n.t :event_description  %></h3>
+      <p><%= simple_format(@warning.description) %></p>
+      <h3><%= I18n.t :host_detail %></h3>
       <p>Hostname: <%= @warning.host.hostname %></p>
       <p>Service: <%= @warning.service.name %></p>
       <p>Status: <%= @warning.host.status.name %></p>
     </div>
 
     <div class="static">
-      <h2><%= I18n.t :message %></h2>
-      <p><%= simple_format(@warning.description) %></p>
+
     </div>
   
   </div>

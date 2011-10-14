@@ -56,3 +56,5 @@ pt-br:
   host: "Host"
   domain_created: "Domínio Criado"
   user: "Usuário"
+  event_description: "Descrição do Evento"
+  host_detail: "Datalhes do Servidor"
