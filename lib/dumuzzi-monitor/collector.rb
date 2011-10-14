@@ -35,7 +35,7 @@ module DumuzziMonitor
                 :tester_id => Host.find_by_domain_id(Domain.find_by_name('localdomain')).id, 
                 :task_id => 0, 
                 :done => false, 
-                :run_at => Time.now + 5.minutes
+                :run_at => Time.now + host_service.interval.value.seconds
               )
               puts "[Collector] Job queue created."
             else
