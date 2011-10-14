@@ -24,22 +24,22 @@ Test by {ID}"
   def new_status
     last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')
     if last_status.empty?
-      last_status_id = '-1'
+      last_status_id = -1
     else
       last_status_id = last_status.status_id
     end
     
-    status_change = StatusChange.new(
-      :host => self.host_id,
-      :hosts_service => self.hosts_service_id,
-      :tester_id => self.tester_id,
-      :service => self.service_id,
-      :interval => self.interval_id,
-      :from_status_id => last_status_id,
-      :to_status_id => self.hosts_service.status_id,
-      :description => self.description,
-      :status => self.hosts_service.status_id
-    )
+    status_change = StatusChange.new
+    status_change.host = self.host
+    status_change.hosts_service = self.hosts_service
+    status_change.tester_id = self.tester_id
+    status_change.service = self.service
+    status_change.interval = self.interval
+    status_change.from_status_id = last_status_id
+    status_change.to_status_id = self.hosts_service.status_id
+    status_change.description = self.description
+    status_change.status = self.hosts_service.status
+
     status_change.save
     DumuzziMailer.warning_message(status_change).deliver
   end
