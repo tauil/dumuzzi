@@ -25,20 +25,21 @@ module DumuzziMonitor
       
         puts "[Tester] Testing #{queued.service.name} to #{queued.host.name}.#{queued.host.domain.name} at #{queued.service.protocol.name} port #{queued.service.port}."
         puts "[Tester] Using plugin #{queued.service.plugin}"
+        
         test_resut = eval("queued.#{queued.service.plugin}")
+        
         if test_resut == true
-          domain.status_id = 1
-          queued.host.status_id = 1
-          queued.hosts_service.status_id = 1
-          queued.event_description
+          status = Status.where(:id => 1)[0]
           puts "[Tester] #{queued.service.name} Ok."
         else
-          domain.status_id = 0
-          queued.host.status_id = 0
-          queued.hosts_service.status_id = 0
-          queued.event_description
+          status = Status.where(:id => 0)[0]
           puts "[Tester] #{queued.service.name} Error."
         end
+        
+        domain.status = status
+        queued.host.status = status
+        queued.hosts_service.status = status
+        queued.event_description
         
         if queued.hosts_service.status_changed?
           queued.new_status
