@@ -1,7 +1,7 @@
 class StatusChange < ActiveRecord::Base
   before_create :generate_ids
   belongs_to :host
-  belongs_to :host_service
+  belongs_to :hosts_service
 #  belongs_to :tester
   belongs_to :service
   belongs_to :interval
