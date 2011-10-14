@@ -1,17 +1,4 @@
-require 'rubygems'
-require "active_record/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "#{Dir.pwd}/app/models/domain"
-require "#{Dir.pwd}/app/models/host"
-require "#{Dir.pwd}/app/models/hosts_service"
-require "#{Dir.pwd}/app/models/service"
-require "#{Dir.pwd}/app/models/protocol"
-require "#{Dir.pwd}/app/models/queued"
-require "#{Dir.pwd}/app/models/status_change"
-require "#{Dir.pwd}/app/models/status"
-require "#{Dir.pwd}/app/models/interval"
-require "#{Dir.pwd}/app/mailers/dumuzzi_mailer"
+
 module DumuzziMonitor
   extend self
   def collector
