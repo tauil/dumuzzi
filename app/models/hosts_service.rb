@@ -13,8 +13,8 @@ class HostsService < ActiveRecord::Base
   end
 
   def status_changed?
-    last_status = StatusChange.where(:hosts_service_id => self.id).limit(1).order('created_at DESC')
-    unless last_status.empty?
+    last_status = StatusChange.where(:hosts_service_id => self.id).limit(1).order('created_at DESC')[0]
+    unless last_status.nil?
       unless last_status.status_id == self.status_id
         true
       else
