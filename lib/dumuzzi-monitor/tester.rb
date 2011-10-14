@@ -1,4 +1,3 @@
-
 module DumuzziMonitor
   extend self
   
@@ -18,6 +17,7 @@ module DumuzziMonitor
         
         if test_resut == true
           status = Status.where(:id => 1)[0]
+          queued.done = true
           puts "[Tester] #{queued.service.name} Ok."
         else
           status = Status.where(:id => 0)[0]
@@ -36,7 +36,6 @@ module DumuzziMonitor
         domain.save
         queued.hosts_service.save
         queued.host.save
-        queued.done = true
         queued.save
       end
       puts "[Tester] All tests done."
