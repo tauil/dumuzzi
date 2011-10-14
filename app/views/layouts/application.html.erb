@@ -59,6 +59,16 @@
             </ul>
           </div>
           <% end %>
+          <% unless @testers.nil? %>
+          <div id="newest">
+            <h1>Testers</h1>
+            <ul>
+              <% @testers.each do |tester| %>
+                <li><a href="http://<%= tester.hostname %>"><%= tester.hostname %></a></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
         </aside>
       </section>
       
