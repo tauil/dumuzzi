@@ -1,6 +1,6 @@
   <div id="show">
     <%= outgoing_menssage %>
-	  <h3><%= I18n.t :showing %></h3>
+	  <h3><%= I18n.t :showing %>  <%= link_to image_tag("icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(@domain) %>  <%= link_to image_tag("icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), domains_path %></h3>
     <div class="tab_container">
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
@@ -51,11 +51,5 @@
         </table>
       </div>
     </div>
-
-
-      <div class="submit_link">
-        <%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(@domain) %> 
-        <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), domains_path %>
-      </div>
   </div>
   <%= render :partial => 'hosts/index' %>
