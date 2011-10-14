@@ -11,10 +11,15 @@ class Queued < ActiveRecord::Base
   belongs_to :status
   
   def event_description
-    self.description = "Host stage change detected on #{host.hostname}.
-The host status change to #{host.status}.
-The domain status change to #{host.domain.status}.
-Test by {ID}"
+    last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')[0]
+    self.description = "Host state change was detected on #{host.hostname} IP: #{host.address}.
+
+Test details:
+
+The #{service.name} service status changed from #{last_status.from_status.name} to #{last_status.to_status.name} on #{host.hostname}.
+The domain status is #{host.domain.status.name}.
+
+Tested by #{tester.hostname} IP: #{tester.address}"
   end
   
   def generate_ids
