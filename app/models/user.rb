@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   before_create :generate_ids
   has_many :authentications
+  has_many :domains
+  has_many :hosts
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -1,5 +1,6 @@
 class Host < ActiveRecord::Base
   before_create :generate_ids
+  belongs_to :user
   belongs_to :domain
   belongs_to :status
   has_many :hosts_service
