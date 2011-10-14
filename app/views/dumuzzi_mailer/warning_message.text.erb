@@ -1,12 +1,11 @@
 <%#= @warning.subject %>
 
-<%= @warning.host.name %>
-<%= @warning.host.status %>
-
+Hostname: <%= @warning.host.hostname %>
+Service: <%= @warning.service.name %>
+Status: <%= @warning.host.status.name %>
 <%= I18n.t :message %>:
+<%= @warning.description %>
 
-<%= @warning.body %>
 
-Technology by @Cidadelas: http://twitter.com/cidadelas
-
+Dumuzzi Monitor, your free choice to services monitoring
 Technology by @KoshTech: http://twitter.com/KoshTech

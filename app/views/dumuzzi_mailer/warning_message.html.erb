@@ -16,19 +16,19 @@
     <div class="dinamic">
       <p>Hostname: <%= @warning.host.hostname %></p>
       <p>Service: <%= @warning.service.name %></p>
-      <p>Status: <%= @warning.host.status %></p>
+      <p>Status: <%= @warning.host.status.name %></p>
     </div>
 
     <div class="static">
       <h2><%= I18n.t :message %></h2>
-      <p><%= simple_format(@warning.body) %></p>
+      <p><%= simple_format(@warning.description) %></p>
     </div>
   
   </div>
 
   <div class="footer">    
-    <h3>Footer</h3>
-    <p>Content here.</p>
+    <h3>Dumuzzi Monitor</h3>
+    <p>Dumuzzi Monitor, your free choice to services monitoring</p>
     <p>Technology by <%= link_to( '@KoshTech','http://twitter.com/KoshTech' ) %></p>
   </div>
   
