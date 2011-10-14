@@ -1,34 +1,16 @@
 #!/usr/bin/env ruby
+puts "Please wait..."
 require 'rubygems'
-
-# Set up gems listed in the Gemfile.
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
-
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
-
-require 'rails/all'
 require 'forever'
-require 'mail'
-require 'yaml'
-
-#if ARGV.any? { |cmd| cmd =~ /configure/ }
-#end
-
-run_mode = ENV['RAILS_ENV'] ||= 'development'
-require "#{Dir.pwd}/lib/dumuzzi-monitor"
-
 require "#{Dir.pwd}/config/application"
+
 Rails.application.require_environment!
 
-#dbconfig = YAML::load(File.open(File.expand_path('../../config/database.yml',  __FILE__)))
-#ActiveRecord::Base.establish_connection(dbconfig[run_mode])
+require "#{Dir.pwd}/lib/dumuzzi-monitor"
 
-#email_settings = YAML::load(File.open("#{Dir.pwd}/config/email.yml"))
-#ActionMailer::Base.smtp_settings = email_settings[run_mode]
-#ActionMailer::Base.default_url_options[:host] = ActionMailer::Base.smtp_settings[:default_url_options]
-#ActionMailer::Base.config.template_root = "#{Dir.pwd}/app/views/dumuzzi_mailer/"
-#ActionMailer::Base.config.delivery_method = :sendmail
-#ActionMailer::Base.config.logger = Logger.new(STDOUT)
+sleep 3
 
 Forever.run do
   # Our working directory, here we store pids/logs
