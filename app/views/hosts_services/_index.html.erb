@@ -11,7 +11,7 @@
             <th></th>
             <th><%= I18n.t :host %></th>
             <th><%= I18n.t :service %></th>
-            <th><%= I18n.t :interval_id %></th>
+            <th><%= I18n.t :interval %></th>
             <th><%= I18n.t :status %></th>
             <th><%= I18n.t :monitor %></th>
             <th><%= I18n.t :enabled %></th>
@@ -26,7 +26,7 @@
             <td></td>
             <td><%= hosts_service.host.name %></td>
             <td><%= hosts_service.service.name %></td>
-            <td><%= hosts_service.interval_id %></td>
+            <td><%= hosts_service.interval.name %></td>
             <td><%= hosts_service.status.name %></td>
             <td><%= hosts_service.monitor %></td>
             <td><%= hosts_service.enabled %></td>
