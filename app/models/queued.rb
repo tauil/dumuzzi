@@ -16,7 +16,7 @@ class Queued < ActiveRecord::Base
 
 Test details:
 
-The #{service.name} service status changed from #{last_status.from_status.name} to #{last_status.to_status.name} on #{host.hostname}.
+The #{service.name} service status changed from #{last_status.from_status.name} to #{last_status.to_status.name} on #{host.hostname} at #{last_status.created_at}.
 The domain status is #{host.domain.status.name}.
 
 Tested by #{tester.hostname} IP: #{tester.address}"
