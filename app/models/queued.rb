@@ -22,8 +22,8 @@ Test by {ID}"
   end
 
   def new_status
-    last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')
-    if last_status.empty?
+    last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')[0]
+    if last_status.nil?
       last_status_id = -1
     else
       last_status_id = last_status.status_id
