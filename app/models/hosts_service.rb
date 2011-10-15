@@ -1,5 +1,7 @@
 class HostsService < ActiveRecord::Base
   before_create :generate_ids
+  after_create :initialize_status
+  belongs_to :user
   belongs_to :host
   belongs_to :service
   belongs_to :status
@@ -10,6 +12,23 @@ class HostsService < ActiveRecord::Base
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
     self.user_id = self.host.user_id
+  end
+
+  def initialize_status
+    initialized_status = Status.where(:id => -2)[0]
+    not_tested_status = Status.where(:id => -1)[0]
+  
+    status_change = StatusChange.new
+    status_change.host = self.host
+    status_change.hosts_service = self
+    status_change.tester_id = Rails.application.config.local_tester[:id]
+    status_change.service = self.service
+    status_change.interval = self.interval
+    status_change.from_status = initialized_status
+    status_change.to_status = not_tested_status
+    status_change.description = "Status initialized."
+    status_change.status = not_tested_status
+    status_change.save
   end
 
   def status_changed?
