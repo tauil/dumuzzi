@@ -1,7 +1,7 @@
 
 protocol = Protocol.find_by_name('TCP')
 
-Service.create(
+ping = Service.create(
   :name => "Ping",
   :protocol => protocol,
   :port => 7,
@@ -11,7 +11,7 @@ Service.create(
   :enabled => true
 )
 
-Service.create(
+http = Service.create(
   :name => "http",
   :protocol => protocol,
   :port => 80,
@@ -21,31 +21,42 @@ Service.create(
   :enabled => true
 )
 
-user = User.create(:user_id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => Digest::SHA1.hexdigest('monitor') )
+interval = Interval.find(3)
+status = Status.find('-2')
 
-domains = [ 'localdomain']
+user = User.create(:user_id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => 'monitor' )
+
+domains = [ 'dumuzzi.com']
+hostnames = [ 'tester1', 'tester2' ]
 
 domains.each do |domain| 
-  Domain.create( :name => domain, 
-    :user_id => user.id, 
+  domain = Domain.create( :name => domain, 
+    :user => user, 
     :enabled => true, 
     :monitor => true
   )
-end
-
-hostnames = [ 'localhost' ]
-
-hostnames.each do |hostname|
-  Domain.all.each do |domain|
-    Host.create(
-      :domain_id => domain.id,
-      :user_id => domain.user_id,
+  hostnames.each do |hostname|
+    host = Host.create(
+      :domain => domain,
+      :user => domain.user,
       :name => hostname, 
       :enabled => true, 
       :monitor => true,
       :tester => true,
       :gateway => '0.0.0.0'
     )
+    host.hosts_service.create(
+      :host => host,
+	    :service => ping,
+    	:user => user,
+	    :interval => interval,
+	    :description =>	"#{ping.name} Test. #{ping.description}",
+	    :status => status,
+	    :monitor => true,
+	    :enabled => true
+	  )
   end
 end
+
+
 
