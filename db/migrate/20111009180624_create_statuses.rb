@@ -9,7 +9,7 @@ class CreateStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+    ActiveRecord::Base.connection.execute("ALTER TABLE `statuses` ADD PRIMARY KEY(`id`)")
     add_index :statuses, :id
     add_index :statuses, :name
     add_index :statuses, :action
