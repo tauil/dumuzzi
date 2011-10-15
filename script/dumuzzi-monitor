@@ -7,10 +7,7 @@ require 'forever'
 require "#{Dir.pwd}/config/application"
 
 Rails.application.require_environment!
-
 require "#{Dir.pwd}/lib/dumuzzi-monitor"
-
-sleep 3
 
 Forever.run do
   # Our working directory, here we store pids/logs
