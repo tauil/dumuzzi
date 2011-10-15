@@ -1,4 +1,3 @@
-
 module DumuzziMonitor
   extend self
   def collector
@@ -19,7 +18,7 @@ module DumuzziMonitor
                 :service_id => host_service.service.id, 
                 :interval_id => host_service.interval_id, 
                 :hosts_service_id => host_service.id,
-                :tester_id => Host.find_by_domain_id(Domain.find_by_name('localdomain')).id, 
+                :tester_id => Rails.application.config.local_tester[:id], 
                 :task_id => 0, 
                 :done => false, 
                 :run_at => Time.now + host_service.interval.value.seconds

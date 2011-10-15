@@ -4,8 +4,7 @@ module DumuzziMonitor
   def tester
     if has_connection?
       puts "[Tester] Starting tests..."
-      local_domain = Domain.find_by_name('localdomain')
-      local_tester_id = Host.find_by_domain_id(local_domain.id).id
+      local_tester_id = Rails.application.config.local_tester[:id]
       Queued.where(:tester_id => local_tester_id, :done => false).where(["run_at <= ?", Time.now]).each do |queued|
         host = queued.host
         domain = host.domain
