@@ -4,7 +4,8 @@ require 'rubygems'
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'forever'
-require "#{Dir.pwd}/config/application"
+require File.expand_path('../../config/application',  __FILE__)
+
 
 Rails.application.require_environment!
 require "#{Dir.pwd}/lib/dumuzzi-monitor"
@@ -24,8 +25,12 @@ Forever.run do
   every 29.seconds do
     DumuzziMonitor::collector
   end
+
+  every 39.seconds do
+    DumuzziMonitor::gateway_state_update
+  end
   
-  every 31.seconds do
+  every 59.seconds do
     DumuzziMonitor::tester
   end
 
