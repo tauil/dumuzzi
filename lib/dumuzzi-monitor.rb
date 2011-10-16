@@ -11,23 +11,17 @@ require "#{Dir.pwd}/lib/dumuzzi-monitor/tester"
 
 module DumuzziMonitor
   extend self
-  def has_connection?(cached=false)
+  def has_connection?
     tester = Host.where(:id => Rails.application.config.local_tester[:id])[0]
-    unless cached
-      unless Service.gateway_test_ping(tester)
-        puts "[Network] Gateway error. Tests are disabled."
-        tester.gateway_state = false
-        tester.save
-        return false
-      else
-        puts "[Network] Gateway OK. Tests are enabled."
-        tester.gateway_state = true
-        tester.save
-        return true
-      end
-    else
-      return tester.gateway_state
+    unless tester.gateway_state
+      puts "[Network] Gateway error. Tests are disabled."
     end
+    return tester.gateway_state
+  end
+  
+  def gateway_state_update
+    tester = Host.where(:id => Rails.application.config.local_tester[:id])[0]
+    return tester.gateway_alive?
   end
 end
 
