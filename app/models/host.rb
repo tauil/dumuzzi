@@ -17,7 +17,25 @@ class Host < ActiveRecord::Base
   def hostname
     "#{name}.#{domain.name}"
   end
-  
+
+  def gateway_alive?
+    self.gateway = Rails.application.config.local_tester[:gateway]
+    puts "[Network] Local tester id: #{hostname}"
+    puts "[Network] Gateway: #{hostname}"
+    puts "[Network] Testing connection..."
+    unless Net::Ping::External.new(gateway).ping
+      puts "[Network] Gateway error. Tests are disabled."
+      self.gateway_state = false
+      self.save
+      return false
+    else
+      puts "[Network] Gateway OK. Tests are enabled."
+      self.gateway_state = true
+      self.save
+      return true
+    end
+  end
+
   def status_changed?
     last_status = StatusChange.where(:host_id => self.id).limit(1).order('created_at DESC')
     unless last_status.empty?
