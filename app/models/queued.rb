@@ -44,9 +44,11 @@ Tested by #{tester.hostname} IP: #{tester.address}"
     status_change.to_status_id = self.hosts_service.status_id
     status_change.description = self.description
     status_change.status = self.hosts_service.status
-
     status_change.save
-    DumuzziMailer.warning_message(status_change).deliver
+    
+    if self.host.send_alert
+      DumuzziMailer.warning_message(status_change).deliver
+    end unless self.host.domain.send_alert == false
   end
 
   def internal_ping
