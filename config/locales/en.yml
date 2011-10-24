@@ -2,61 +2,220 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  name: "Name"
-  address: "Address"
-  status: "Status" 
-  monitor: "Monitor" 
-  enabled: "Enabled"
-  show: "Show"
-  edit: "Edit"
-  delete: "Delete"
-  are_you_sure: "Are you sure?"
-  new_domain: "New domain"
-  id: "ID"
-  description: "Description"
-  allow_comments: "Allow comments"
-  share: "Share"
-  status: "Status"
-  share: "Share"
-  back: "Back"
-  showing: "Showing"
-  user_id: "User id"
-  description: "Description"
-  send_alert: "Send alert"
-  editing_domain: "Editing domain"
-  editing_protocol: "Editing protocol"
-  listing_protocols: "Listing protocols"
-  new_protocol: "New protocol"
-  editing_host: "Editing host"
-  new_host: "New host"
-  editing_hosts_service: "Editing hosts service"
-  host: "Host"
-  service: "Service"
-  interval: "Interval"
-  new_hosts_service: "New hosts service"
-  showing: "Showing"
-  editing_queued: "Editing queued"
-  new_queued: "New queued"
-  editing_service: "Editing service"
-  port: "Port"
-  description: "Description"
-  new_service: "New service"
-  editing_state_change: "Editing state changeo"
-  listing_state_changes: "Listing state changes"
-  listing_hosts: "Listing hosts"
-  listing_queueds: "Listing queueds"
-  new_queued: "New queued" 
-  listing_services: "Listing services"
-  protocol: "Protocol"
-  new_state_change: "New state change"
-  listing_domains: "Listing domains"
-  listing_hosts_services: "Listing hosts services"
-  domain: "domain"
-  domain_created: "Domain Created"
-  domain_updated: "Domain Updated"
-  user: "User"
-  event_description: "Event Description "
-  host_detail: "Host Detail"
-  host_created: "Host Created"
-  host_updated: "Host Updated"
+    date:
+      formats:
+        default: "%m/%d/%Y"
+        short: "%B %d"
+        long: "%B %d, %Y"
+        custom: "%m/%d/%Y"
+        edition_format_date: "%B/%Y"
+        only_day: "%d"
+        only_weekday: "%A"
+        month_complete: "%B"
+        month_abv: "%b"
+        header_format_date: "%B %Y"
+        
+        
+      day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+      abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+      month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+      abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+      order: [ :month, :day, :year ]
+
+    time:
+      formats:
+        default: "%A, %d %B %Y, %H:%M %S %z"
+        short: "%m/%d, %H:%M"
+        long: "%B %d, %Y %H:%M"
+        custom: "%d/%m/%Y"
+        edition_format_date: "%B/%Y"
+        only_day: "%d"
+        only_weekday: "%A"
+        month_complete: "%B"
+        month_abv: "%b"
+        header_format_date: "%B de %Y"
+        comment_format_date: "%B %d, %Y at %H:%M a.m."
+      am: am
+      pm: pm
+
+  # date helper distance in words
+    datetime:
+    distance_in_words:
+      half_a_minute: 'half minute'
+      less_than_x_seconds:
+        one: 'less than 1 second'
+        other: 'than a {{count}} seconds'
+
+      x_seconds:
+        one: '1 second'
+        other: '{{count}} seconds'
+
+      less_than_x_minutes:
+        one: 'less than a minute'
+        other: 'than a {{count}} minutes'
+
+      x_minutes:
+        one: '1 minute'
+        other: '{{count}} minutes'
+
+      about_x_hours:
+        one: 'about 1 hour'
+        other: 'about {{count}} hours'
+
+      x_days:
+        one: '1 day'
+        other: '{{count}} days'
+
+      about_x_months:
+        one: 'about 1 month'
+        other: 'about {{count}} months'
+
+      x_months:
+        one: '1 month'
+        other: '{{count}} months'
+
+      about_x_years:
+        one: 'about 1 year'
+        other: 'about {{count}} years'
+
+      over_x_years:
+        one: 'more than 1 year'
+        other: 'more than {{count}} years'
+    prompts:
+      year:   "Year"
+      month:  "Month"
+      day:    "Day"
+      hour:   "Hour"
+      minute: "Minute"
+      second: "Second"
+
+   # numeros
+    number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: 'U$'
+        precision: 2
+        format: '%u %n'
+        separator: ','
+        delimiter: '.'
+    percentage:
+      format:
+        delimiter: '.'
+    precision:
+      format:
+        delimiter: '.'
+    human:
+      format:
+        precision: 1
+        delimiter: '.'
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+# Used in array.to_sentence.
+    support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+# Active Record
+    activerecord:
+    errors:
+      template:
+        header:
+          one: "Unable to write {{model}}: 1 error"
+          other: "Unable to write {{model}}: {{count}} errors."
+        body: "Please check (the) following field(s):"
+      messages:
+        inclusion: "is not included in the list"
+        exclusion: "Unavailable"
+        invalid: "not valid"
+        confirmation: "not agree with the confirmation"
+        accepted: "be accepted"
+        empty: "can not be empty"
+        blank: "can not be blank"
+        too_long: "is too long (maximum: {{count}} characters)"
+        too_short: "is very short (minimum: {{count}} characters)"
+        wrong_length: "não possui o tamanho esperado ({{count}} characters)"
+        taken: "is already in use"
+        not_a_number: "not a number"
+        greater_than: "must be greater than {{count}}"
+        greater_than_or_equal_to: "must be greater than or equal to {{count}}"
+        equal_to: "must be equal to {{count}}"
+        less_than: "must be less than {{count}}"
+        less_than_or_equal_to: "must be less than or equal to {{count}}"
+        odd: "be odd"
+        even: "be aware"
+        
+    # layout geral
+        
+    hello: "Hello world"
+    name: "Name"
+    address: "Address"
+    status: "Status" 
+    monitor: "Monitor" 
+    enabled: "Enabled"
+    show: "Show"
+    edit: "Edit"
+    delete: "Delete"
+    are_you_sure: "Are you sure?"
+    new_domain: "New domain"
+    id: "ID"
+    description: "Description"
+    allow_comments: "Allow comments"
+    share: "Share"
+    status: "Status"
+    share: "Share"
+    back: "Back"
+    showing: "Showing"
+    user_id: "User id"
+    description: "Description"
+    send_alert: "Send alert"
+    editing_domain: "Editing domain"
+    editing_protocol: "Editing protocol"
+    listing_protocols: "Listing protocols"
+    new_protocol: "New protocol"
+    editing_host: "Editing host"
+    new_host: "New host"
+    editing_hosts_service: "Editing hosts service"
+    host: "Host"
+    service: "Service"
+    interval: "Interval"
+    new_hosts_service: "New hosts service"
+    showing: "Showing"
+    editing_queued: "Editing queued"
+    new_queued: "New queued"
+    editing_service: "Editing service"
+    port: "Port"
+    description: "Description"
+    new_service: "New service"
+    editing_state_change: "Editing state changeo"
+    listing_state_changes: "Listing state changes"
+    listing_hosts: "Listing hosts"
+    listing_queueds: "Listing queueds"
+    new_queued: "New queued" 
+    listing_services: "Listing services"
+    protocol: "Protocol"
+    new_state_change: "New state change"
+    listing_domains: "Listing domains"
+    listing_hosts_services: "Listing hosts services"
+    domain: "domain"
+    domain_created: "Domain Created"
+    domain_updated: "Domain Updated"
+    user: "User"
+    event_description: "Event Description "
+    host_detail: "Host Detail"
+    host_created: "Host Created"
+    host_updated: "Host Updated"
