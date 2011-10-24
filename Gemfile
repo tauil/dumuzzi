@@ -34,8 +34,14 @@ gem 'unicorn'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :development, :test do
+  gem "autotest"
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'minitest'
+  gem 'shoulda', '2.11.3'
+  gem 'capybara', '1.1.1'
+  gem 'launchy', '2.0.5'
+  gem "simplecov", "0.5.3"
 end
 

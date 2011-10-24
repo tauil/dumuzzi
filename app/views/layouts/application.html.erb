@@ -6,30 +6,28 @@
 	  <meta name="keywords" content="layout css3 javascript jquery html5"/>
     <meta name="description" content="Este é um layout base."/>
 	  <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />-->
-    <%= stylesheet_link_tag    "layout.css.scss.erb" %>
+    <%= stylesheet_link_tag "layout.css.scss.erb" %>
 	</head>
   <body>
     <div id="container">
       <header>
-        <h2>DUMUZZI</h2>
+        <!--<center><h2>DUMUZZI</h2></center>-->
         <nav>
           <ul>
             <li><a href="/">HOME</a></li>
             <li><a href="/terms">TERMS</a></li>
             <li><a href="/about">ABOUT</a></li>
+            <% if @authentications %>
+              <li><a href="/domains">Domain</a></li>
+              <li><%= image_tag("user.jpeg", :alt => "LOGADO", :title => "LOGADO") %></li>
+            <% else %>
+              <li><a href="/auth/twitter" ><%= image_tag("twitter_32.png", :alt => "FAÇA LOGIN", :title => "FAÇA LOGIN") %></a></li>
+            <% end %>
           </ul>
         </nav>
       </header>
       
       <section>
-        <ul>
-        <% if @authentications %>
-          <%= image_tag("user.png", :width => 60, :height => 60, :border => 0, :alt => "LOGADO", :title => "LOGADO") %>
-          <li><a href="/domains">Domain</a></li>
-        <% else %>
-          <li><a href="/auth/twitter" ><%= image_tag("twitter.png", :width => 60, :height => 60, :border => 0, :alt => "FAÇA LOGIN", :title => "FAÇA LOGIN") %></a></li>
-        <% end %>
-        </ul>
         <article>
           <%= yield %>
         </article>

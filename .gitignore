@@ -6,3 +6,4 @@ db/schema.rb
 config/database.yml
 config/email.yml
 config/tester.yml
+config/unicorn.rb
