@@ -5,16 +5,8 @@
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
           <tr> 
-            <td><b><%= I18n.t :id %></b></th>
-            <td><%= @host.id %></td>            
-			    </tr>
-          <tr> 
-            <td><b><%= I18n.t :user_id %></b></th>
-            <td><%= @host.user_id %></td>            
-			    </tr>
-          <tr> 
             <td><b><%= I18n.t :domain %></b></th>
-            <td><%= @host.domain.name %></td>            
+            <td><%= @host.domain.name unless @host.domain.nil? %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :name %></b></th>
@@ -30,27 +22,27 @@
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :allow_comments %></b></th>
-            <td><%= @host.allow_comments %></td>            
+            <td><%= show_icon @host.allow_comments, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :send_alert %></b></th>
-            <td><%= @host.send_alert %></td>            
+            <td><%= show_icon @host.send_alert, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :share %></b></th>
-            <td><%= @host.share %></td>            
+            <td><%= show_icon @host.share, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :status %></b></th>
-            <td><%= @host.status.name %></td>            
+            <td><%= @host.status.name unless @host.status.nil? %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :monitor %></b></th>
-            <td><%= @host.monitor %></td>            
+            <td><%= show_icon @host.monitor, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :enabled %></b></th>
-            <td><%= @host.enabled %></td>            
+            <td><%= show_icon @host.enabled, "enabled", "disabled" %></td>            
 			    </tr>
         </table>
       </div>

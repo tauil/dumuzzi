@@ -5,14 +5,6 @@
 		  <div id="tab1" class="tab_content">
 			  <table class="tablesorter" cellspacing="0">
           <tr> 
-            <td><b><%= I18n.t :id %></b></th>
-            <td><%= @domain.id %></td>            
-			    </tr>
-          <tr> 
-            <td><b><%= I18n.t :user_id %></b></th>
-            <td><%= @domain.user_id %></td>            
-			    </tr>
-          <tr> 
             <td><b><%= I18n.t :name %></b></th>
             <td><%= @domain.name %></td>            
 			    </tr>
@@ -26,27 +18,27 @@
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :allow_comments %></b></th>
-            <td><%= @domain.allow_comments %></td>            
+            <td><%= show_icon @domain.allow_comments, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :send_alert %></b></th>
-            <td><%= @domain.send_alert %></td>            
+            <td><%= show_icon @domain.send_alert, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :share %></b></th>
-            <td><%= @domain.share %></td>            
+            <td><%= show_icon @domain.share, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :status %></b></th>
-            <td><%= @domain.status.name %></td>
+            <td><%= @domain.status.name unless @domain.status.nil? %></td>
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :monitor %></b></th>
-            <td><%= @domain.monitor %></td>            
+            <td><%= show_icon @domain.monitor, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :enabled %></b></th>
-            <td><%= @domain.enabled %></td>            
+            <td><%= show_icon @domain.enabled, "enabled", "disabled" %></td>            
 			    </tr>
         </table>
       </div>

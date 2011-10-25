@@ -20,11 +20,11 @@
         <% @hosts_service.each do |hosts_service| %>
           <tr>
             <td><%= hosts_service.host.name %></td>
-            <td><%= hosts_service.service.name %></td>
-            <td><%= hosts_service.interval.name %></td>
-            <td><%= hosts_service.status.name %></td>
-            <td><%= hosts_service.monitor %></td>
-            <td><%= hosts_service.enabled %></td>
+            <td><%= hosts_service.service.name unless hosts_service.service.nil? %></td>
+            <td><%= hosts_service.interval.name unless hosts_service.interval.nil? %></td>
+            <td><%= hosts_service.status.name unless hosts_service.status.nil? %></td>
+            <td><%= show_icon hosts_service.monitor, "enabled", "disabled" %></td>
+            <td><%= show_icon hosts_service.enabled, "enabled", "disabled" %></td>
             <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), hosts_service %></td>
             <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_hosts_service_path(hosts_service) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => hosts_service.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>

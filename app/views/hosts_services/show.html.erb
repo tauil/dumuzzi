@@ -6,15 +6,15 @@
 			  <table class="tablesorter" cellspacing="0">
           <tr> 
             <td><b><%= I18n.t :host %></b></th>
-            <td><%= @hosts_service.host.name %></td>            
+            <td><%= @hosts_service.host.name unless @hosts_service.host.nil? %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :service %></b></th>
-            <td><%= @hosts_service.service.name %></td>            
+            <td><%= @hosts_service.service.name unless @hosts_service.service.nil?  %></td>            
 			    </tr>
           <tr> 
-            <td><b><%= I18n.t :interval_id %></b></th>
-            <td><%= @hosts_service.interval_id %></td>            
+            <td><b><%= I18n.t :interval %></b></th>
+            <td><%= @hosts_service.interval.name unless @hosts_service.interval.nil? %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :description %></b></th>
@@ -22,15 +22,15 @@
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :status %></b></th>
-            <td><%= @hosts_service.status.name %></td>
+            <td><%= @hosts_service.status.name unless @hosts_service.status.nil? %></td>
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :monitor %></b></th>
-            <td><%= @hosts_service.monitor %></td>            
+            <td><%= show_icon @hosts_service.monitor, "enabled", "disabled" %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :enabled %></b></th>
-            <td><%= @hosts_service.enabled %></td>            
+            <td><%= show_icon @hosts_service.enabled, "enabled", "disabled" %></td>            
 			    </tr>
         </table>
       </div>

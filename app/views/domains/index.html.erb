@@ -20,9 +20,9 @@
           <tr>
             <td><%= domain.name %></td>
             <td><%= domain.address %></td>
-            <td><%= domain.status.name %></td>
-            <td><%= domain.monitor %></td>
-            <td><%= domain.enabled %></td>
+            <td><%= domain.status.name unless domain.status.nil? %></td>
+            <td><%= show_icon domain.monitor, "enabled", "disabled" %></td>
+            <td><%= show_icon domain.enabled, "enabled", "disabled" %></td>
             <td><%= link_to image_tag("icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), domain %></td>
             <td><%= link_to image_tag("icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(domain) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => domain.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>

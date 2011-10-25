@@ -5,8 +5,6 @@
       <table class="tablesorter" cellspacing="0">
         <thead>
           <tr>
-            <th><%= I18n.t :id %></th>
-            <th><%= I18n.t :user %></th>
             <th><%= I18n.t :name %></th>
             <th><%= I18n.t :address %></th>
             <th><%= I18n.t :domain %></th>
@@ -21,14 +19,12 @@
         <tbody>
         <% @hosts.each do |host| %>
           <tr>
-            <td><%= host.id[0,8] %></td>
-            <td><%= host.user_id[0,8] %></td>
             <td><%= host.name %></td>
             <td><%= host.address %></td>
-            <td><%= host.domain.name %></td>
-            <td><%= host.status.name %></td>
-            <td><%= host.monitor %></td>
-            <td><%= host.enabled %></td>
+            <td><%= host.domain.name unless host.domain.nil? %></td>
+            <td><%= host.status.name unless host.status.nil? %></td>
+            <td><%= show_icon host.monitor, "enabled", "disabled" %></td>
+            <td><%= show_icon host.enabled, "enabled", "disabled" %></td>
             <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), host %></td>
             <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_host_path(host) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => host.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>

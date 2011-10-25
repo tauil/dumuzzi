@@ -9,6 +9,11 @@ ul, li {
 
 a {
   text-decoration:none;
+  color: black;
+}
+
+a:hover {
+  color:#CFCFCF;
 }
 
 #container {
@@ -47,15 +52,6 @@ header nav li:first-child {
   margin-left:0;
 }
 
-header nav li a {
-  color:#000;
-  text-decoration:none;
-}
-
-header nav li.current a, header nav li a:hover {
-  color:#CFCFCF;
-}
-
 header h2 {
   font-size: 26px;
 }
@@ -66,25 +62,6 @@ section {
   position: relative;
   overflow: hidden;
   margin-top: 10px;
-}
-
-section ul {
-  float: left;
-  width: 100%;
-}
-
-section ul img {
-  float: left;
-}
-
-section ul li {
-  float: left;
-  margin-top: 8px;
-  margin-left: 20px;
-}
-
-section ul a {
-  color: black;
 }
 
 article {
@@ -100,6 +77,10 @@ article p {
 
 article #about {
   margin-left: 10px;
+}
+
+article #about h1 {
+  color: #696969;
 }
 
 article #terms {
@@ -146,15 +127,29 @@ article #show td {
 
 aside {
   border: none;
-  text-align: center;
   width: 29%;
   float: right;
   background-color: #fff;
 }
 
-aside li {
-  margin-top: 10px;
-  margin-right: 40px;
+aside #sidebar {
+  width: 100%;
+  margin-left: 0px;
+}
+
+aside #sidebar h1 {
+  text-align: center;
+  color: #696969;
+}
+
+aside #sidebar ul li {
+  text-align: left;
+  margin-left: 0px;
+}
+
+aside #sidebar ul li a {
+  text-align: left;
+  margin-left: 0px;
 }
 
 footer {
