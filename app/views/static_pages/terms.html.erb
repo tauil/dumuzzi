@@ -1,9 +1,6 @@
             <div id="terms">              
               <h1><%= I18n.t :terms %></h1>
-              <h2>2011</h2>
-              <p>
-              <h2><p><b>Dumuzzi</b></p></h2>
-              </p>
+              <h2><%= Time.now.strftime("%Y")%> Dumuzzi</h2>
 
               <%= image_tag("server.png", :width => 180, :height => 180, :border => 0) %>
 

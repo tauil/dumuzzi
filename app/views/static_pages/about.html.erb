@@ -1,9 +1,7 @@
             <div id="about">                
+
               <h1><%= I18n.t :about %></h1>
-              <h2>2011</h2>
-              <p>
-                <h2><p><b>Dumuzzi</b></p></h2>
-              </p>
+              <h2><%= Time.now.strftime("%Y")%> Dumuzzi</h2>
 
               <%= image_tag("radar.png", :width => 150, :height => 150, :border => 0) %>
               <p>Dumuzzi é um sistema de monitoramento de máquinas serviços pela
