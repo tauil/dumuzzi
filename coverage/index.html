@@ -23,14 +23,14 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2011-10-23T12:29:44-02:00">2011-10-23T12:29:44-02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2011-10-25T11:16:37-02:00">2011-10-25T11:16:37-02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">39.52%</span></span>
+    (<span class="covered_percent"><span class="red">39.36%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -41,9 +41,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>34</b> files in total.
-    <b>496</b> relevant lines. 
+    <b>498</b> relevant lines. 
     <span class="green"><b>196</b> lines covered</span> and
-    <span class="red"><b>300</b> lines missed </span>
+    <span class="red"><b>302</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -351,11 +351,11 @@
       
       <tr>
         <td class="strong"><a href="#0af1d85006f0b2b11cee253009c5ce78e8171341" class="src_link" title="app/models/queued.rb">app/models/queued.rb</a></td>
-        <td class="red strong">32.65 %</td>
-        <td>80</td>
-        <td>49</td>
+        <td class="red strong">31.37 %</td>
+        <td>82</td>
+        <td>51</td>
         <td>16</td>
-        <td>33</td>
+        <td>35</td>
         <td>0.3</td>
       </tr>
       
@@ -565,7 +565,7 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">52.66%</span></span>
+    (<span class="covered_percent"><span class="red">52.11%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -576,9 +576,9 @@
   <a name="Models"></a>
   <div>
     <b>11</b> files in total.
-    <b>188</b> relevant lines. 
+    <b>190</b> relevant lines. 
     <span class="green"><b>99</b> lines covered</span> and
-    <span class="red"><b>89</b> lines missed </span>
+    <span class="red"><b>91</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -656,11 +656,11 @@
       
       <tr>
         <td class="strong"><a href="#0af1d85006f0b2b11cee253009c5ce78e8171341" class="src_link" title="app/models/queued.rb">app/models/queued.rb</a></td>
-        <td class="red strong">32.65 %</td>
-        <td>80</td>
-        <td>49</td>
+        <td class="red strong">31.37 %</td>
+        <td>82</td>
+        <td>51</td>
         <td>16</td>
-        <td>33</td>
+        <td>35</td>
         <td>0.3</td>
       </tr>
       
@@ -1738,7 +1738,7 @@
         <li class="missed" data-hits="0" data-linenumber="3">
           
           
-          <code class="ruby">    @hosts = Host.where(:status_id =&gt; 1, :enabled =&gt; 1, :share =&gt; true, :tester =&gt; false).where(&quot;created_at &lt; '#{(Time.now - 7.days)}'&quot;).order(&quot;name ASC&quot;)</code>
+          <code class="ruby">    @hosts = Host.where(:status_id =&gt; 1, :enabled =&gt; 1, :share =&gt; true, :tester =&gt; false).where(&quot;created_at &lt; '#{(Time.now - 7.days)}'&quot;).order(&quot;created_at DESC&quot;)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="4">
@@ -5666,11 +5666,11 @@
         <div class="source_table" id="0af1d85006f0b2b11cee253009c5ce78e8171341">
   <div class="header">
     <h3>app/models/queued.rb</h3>
-    <h4><span class="red">32.65 %</span> covered</h4>
+    <h4><span class="red">31.37 %</span> covered</h4>
     <div>
-      <b>49</b> relevant lines. 
+      <b>51</b> relevant lines. 
       <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>33</b> lines missed.</span>
+      <span class="red"><b>35</b> lines missed.</span>
     </div>
   </div>
   
@@ -5953,205 +5953,217 @@
           <code class="ruby">    status_change.status = self.hosts_service.status</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="48">
+        <li class="missed" data-hits="0" data-linenumber="47">
           
           
           <code class="ruby">    status_change.save</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
         <li class="missed" data-hits="0" data-linenumber="49">
           
           
-          <code class="ruby">    DumuzziMailer.warning_message(status_change).deliver</code>
+          <code class="ruby">    if self.host.send_alert</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">      DumuzziMailer.warning_message(status_change).deliver</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="51">
+          
+          
+          <code class="ruby">    end unless self.host.domain.send_alert == false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="52">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="52">
+        <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
           <code class="ruby">  def internal_ping</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
+        <li class="missed" data-hits="0" data-linenumber="55">
           
           
           <code class="ruby">    hostname = &quot;#{host.hostname}&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
+        <li class="missed" data-hits="0" data-linenumber="56">
           
           
           <code class="ruby">    Service::internal_ping(hostname)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
+        <li class="never" data-hits="" data-linenumber="57">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="58">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
+        <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
           <code class="ruby">  def internal_http_</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="58">
+        <li class="missed" data-hits="0" data-linenumber="60">
           
           
           <code class="ruby">    hostname = &quot;#{host.hostname}&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="59">
+        <li class="missed" data-hits="0" data-linenumber="61">
           
           
           <code class="ruby">    Net::Ping::HTTP.new(hostname).ping</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="62">
+        <li class="covered" data-hits="1" data-linenumber="64">
           <span class="hits">1</span>
           
           <code class="ruby">  def internal_http</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="63">
+        <li class="missed" data-hits="0" data-linenumber="65">
           
           
           <code class="ruby">    hostname = &quot;#{host.hostname}&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="64">
+        <li class="missed" data-hits="0" data-linenumber="66">
           
           
           <code class="ruby">    begin</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="65">
+        <li class="missed" data-hits="0" data-linenumber="67">
           
           
           <code class="ruby">      Net::HTTP.start(hostname) do |http|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="66">
+        <li class="missed" data-hits="0" data-linenumber="68">
           
           
           <code class="ruby">        response = http.get('/')</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="missed" data-hits="0" data-linenumber="69">
           
           
           <code class="ruby">        if not response.code.match(/200/)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="68">
+        <li class="missed" data-hits="0" data-linenumber="70">
           
           
           <code class="ruby">          puts &quot;Web Server down or not resonding: #{response.code} #{response.message}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="70">
+        <li class="missed" data-hits="0" data-linenumber="72">
           
           
           <code class="ruby">          true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="73">
+        <li class="missed" data-hits="0" data-linenumber="75">
           
           
           <code class="ruby">    rescue SocketError =&gt; socket_error</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="74">
+        <li class="missed" data-hits="0" data-linenumber="76">
           
           
           <code class="ruby">      puts &quot;Error Connecting To Web: #{socket_error}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="77">
           
           
           <code class="ruby">    rescue TimeoutError =&gt; timeout_error</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="76">
+        <li class="missed" data-hits="0" data-linenumber="78">
           
           
           <code class="ruby">      puts &quot;Web connection timed out: #{timeout_error}&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="79">
           
           
           <code class="ruby">    end    </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="80">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="82">
           
           
           <code class="ruby">end</code>

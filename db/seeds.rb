@@ -24,7 +24,7 @@ http = Service.create(
 interval = Interval.find(3)
 status = Status.find('-2')
 
-user = User.create(:user_id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => 'monitor' )
+user = User.create(:id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => 'monitor' )
 
 domains = [ 'dumuzzi.com']
 hostnames = [ 'tester1', 'tester2' ]
