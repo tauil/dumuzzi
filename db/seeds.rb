@@ -15,7 +15,7 @@ http = Service.create(
   :name => "http",
   :protocol => protocol,
   :port => 80,
-  :description => "www WorldWideWeb HTTP",
+  :description => "WWW World Wide Web HTTP",
   :plugin=> "internal_http",
   :monitor => true,
   :enabled => true
@@ -27,20 +27,28 @@ status = Status.find('-2')
 user = User.create(:id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => 'monitor' )
 
 domains = [ 'dumuzzi.com']
-hostnames = [ 'tester1', 'tester2' ]
-
-domains.each do |domain| 
+hostnames = [ 'rally', 'us-ut-1', 'us-fl-1', 
+              'br-rj-1', 'br-rj-2', 'br-sp-1' ]
+domains.each do |domain|
+ 
   domain = Domain.create( :name => domain, 
     :user => user, 
     :enabled => true, 
     :monitor => true
   )
   hostnames.each do |hostname|
+  
+    if hostname == 'rally'
+      enabled = true
+    else
+      enabled = false
+    end
+    
     host = Host.create(
       :domain => domain,
       :user => domain.user,
       :name => hostname, 
-      :enabled => true, 
+      :enabled => enabled, 
       :monitor => true,
       :tester => true,
       :gateway => '0.0.0.0'
@@ -53,7 +61,7 @@ domains.each do |domain|
 	    :description =>	"#{ping.name} Test. #{ping.description}",
 	    :status => status,
 	    :monitor => true,
-	    :enabled => true
+	    :enabled => enabled
 	  )
   end
 end
