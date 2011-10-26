@@ -5,7 +5,8 @@ class DumuzziMailer < ActionMailer::Base
     @warning = warning
     @host = ActionMailer::Base.smtp_settings[:default_url_options]
     mail(
-      :to => ActionMailer::Base.smtp_settings[:to],
+#      :to => ActionMailer::Base.smtp_settings[:to],
+      :to => warning.host.user.email,
       :subject => "Host alert!",
       :message => "Host down!"
 	  )
