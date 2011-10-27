@@ -12,4 +12,22 @@ class StatusChange < ActiveRecord::Base
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
   end
+  
+  def make_subject
+    subject = "#{service.name} #{to_status.name} on #{host.hostname}"
+  end
+
+  def make_description
+    
+    description = "Host state change was detected on #{host.hostname} IP: #{host.address}.
+
+Test details:
+
+The #{service.name} service status changed from #{status_change.from_status.name} to #{status_change.to_status.name} on #{host.hostname} at #{status_change.created_at}.
+The domain status is #{host.domain.status.name}.
+
+#{status_change.status.description}
+
+Tested by #{tester.hostname} IP: #{tester.address}"
+  end
 end
