@@ -9,35 +9,36 @@ module DumuzziMonitor
     end     
   end
 
-  def collector
+  def collector(target = :host_service)
     if has_connection?
-      queue
+      queue(target)
     else
       puts '[Collector] No network connection available. Tests are disabled.'
     end
   end
 
-  def queue(target = :host_activate)
+  def queue(target = :host_service)
+    service_host_activate_id = Service.find_by_plugin('host_activate').id
+    enabled = true
     if target == :host_activate
       puts "[Collector] Target #{target}."
-    elsif target == :domain_activate
+      sql_where = "= '#{service_host_activate_id}'"
+      enabled = false
+    elsif target == :host_service
       puts "[Collector] Target #{target}."
+      sql_where = "<> '#{service_host_activate_id}'"
     else
       puts "[Collector] Error. Unknow target."
       return false
     end
     puts "[Collector] Collecting host data to populate service jobs..."
-    Domain.where( :monitor => true, :enabled => true).each do |domain|
+    Domain.where( :monitor => true, :enabled => enabled).each do |domain|
       puts "[Collector] Found domain #{domain.name}"
-      Host.where( :monitor => true, :enabled => true, :tester => false, :domain_id => domain.id).each do |host|
+      Host.where( :monitor => true, :enabled => enabled, :tester => false, :domain_id => domain.id).each do |host|
         puts "[Collector] Opening host #{host.name}.#{domain.name}"
-        
-        
-        HostsService.where( :monitor => true, :enabled => true, :host_id => host.id, ).each do |host_service|
-        
-        
+        HostsService.where( :monitor => true, :enabled => true, :host_id => host.id).where("service_id #{sql_where}").each do |host_service|
           puts "[Collector] Found #{host_service.service.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
-          queued_services = Queued.where(:host_id => host.id, :done => false)
+          queued_services = Queued.where(:host_id => host.id, :done => false).where("service_id #{sql_where}")
           if queued_services.empty?
             puts "[Collector] Creating job for #{host_service.service.name} to #{host.name}.#{domain.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
             Queued.create(
