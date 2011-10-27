@@ -13,8 +13,6 @@
   
   <div class="content">
 
-
-
     <div class="dinamic">
       <h3><%= I18n.t :event_description  %></h3>
       <p><%= simple_format(@warning.description) %></p>
@@ -30,7 +28,8 @@
   
   </div>
 
-  <div class="footer">    
+  <div class="footer">
+    <p>&nbsp;</p> 
     <h3>Dumuzzi Monitor</h3>
     <p>Dumuzzi Monitor, your free choice to services monitoring</p>
     <p>Technology by <%= link_to( '@KoshTech','http://twitter.com/KoshTech' ) %></p>
