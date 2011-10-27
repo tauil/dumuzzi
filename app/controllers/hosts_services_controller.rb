@@ -16,7 +16,7 @@ class HostsServicesController < ApplicationController
   def new
     @hosts_service = HostsService.new :host_id => params[:host_id]
     @hosts_service.user_id = @hosts_service.host.user_id unless @hosts_service.host.nil?
-    @services = Service.where(:enabled => true, :monitor => true)
+    @services = Service.where(:enabled => true, :monitor => true, :public => true)
     @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     
@@ -25,7 +25,7 @@ class HostsServicesController < ApplicationController
 
   def edit
     @hosts_service = HostsService.where(:id => params[:id]).first
-    @services = Service.where(:enabled => true, :monitor => true)
+    @services = Service.where(:enabled => true, :monitor => true, :public => true)
     @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:user_id => current_user.id).order('created_at DESC')
     respond_with @hosts_service
@@ -33,6 +33,7 @@ class HostsServicesController < ApplicationController
 
   def create
     @hosts_service = HostsService.new params[:hosts_service]
+    @hosts_service.enabled = true
     
     if @hosts_service.save
       flash[:notice] = I18n.t :hosts_service_created
@@ -44,6 +45,7 @@ class HostsServicesController < ApplicationController
 
   def update
     @hosts_service = HostsService.where(:id => params[:id]).first
+    @hosts_service.enabled = true
   
     if @hosts_service.update_attributes params[:hosts_service]
       flash[:notice] = I18n.t :hosts_service_updated
