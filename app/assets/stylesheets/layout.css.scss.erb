@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: #CFCFCF;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
 }
 
 ul, li {
@@ -9,7 +10,7 @@ ul, li {
 
 a {
   text-decoration:none;
-  color: black;
+  color: #369;
 }
 
 a:hover {
@@ -19,6 +20,7 @@ a:hover {
 #container {
   /*border: 1px solid gray;*/
   margin: 0 10%;
+  padding: 20px 40px;
 }
 
 header {
@@ -159,6 +161,7 @@ aside #sidebar ul li a {
 }
 
 footer {
+  color: #696969;
   border: none;
   text-align: center;
   margin-top: 10px;
@@ -172,4 +175,71 @@ footer {
 
 footer b {
   font-size: 14px;
+}
+
+#user_nav {
+  float: right;
+  font-size: 14px;
+}
+
+.auth_provider {
+  margin-right:15px;
+}
+
+#omniauth_connect p {
+  margin:1em 0 5px 0;
+}
+
+.omniauth_remove {
+  position:absolute;
+  margin-left:-5px;
+}
+
+.auth_providers_used {
+  margin-right:15px;
+}
+
+input[type=text], input[type=password], textarea {
+  border:0;
+  border:1px solid #ccc;
+  padding:5px;
+  font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 14px;
+  color:#444;
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+  border:1px solid #aaa;
+}
+
+.user-form {
+  float:left;
+  margin-left: 35px;
+}
+
+.omniauth-connect {
+  float:left;
+  margin-left:0px;
+}
+
+#status_message {
+  width:400px;
+}
+
+.time {
+  color:#999;
+  font-size:12px;
+}
+
+.username {
+  color:#007000;
+}
+
+.no-username {
+  color:#888;
+}
+
+.let-me-know {
+  color:#999;
+  font-size:13px;
 }

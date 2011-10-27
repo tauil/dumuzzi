@@ -1,7 +1,6 @@
 class ChangeAuthenticationUserId < ActiveRecord::Migration
-  def change
-    remove_column :authentications, :user_id
-    add_column :authentications, :user_id, :string, :after => :id, :null => false
+  def change    
+    change_column :authentications, :user_id, :string, :null => false, :after => :id
     add_index :authentications, :user_id
   end
 end

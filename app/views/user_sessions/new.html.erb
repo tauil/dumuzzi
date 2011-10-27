@@ -1,0 +1,32 @@
+<div class="user-form">
+  <h1><%= I18n.t :signin %></h1>
+  <%= form_for @user_session do |f| %>
+
+    <%#= f.error_messages(
+      :header_message => '',
+      :message => 'Following errors were found:',
+      :id=> "flash_error"
+      )
+    %>
+
+    <p>
+      <%= f.label :login %><br />
+      <%= f.text_field :login %>
+    </p>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.text_field :password %>
+    </p>
+    <p><%= f.submit I18n.t :signin %></p>
+  <% end %>
+</div>
+
+<div class="omniauth-connect">
+  <h1><%= I18n.t :or %></h1>
+  <h3><%= I18n.t :sign_in_with %></h3>
+  <% ["twitter"].each do |provider| %>
+    <%= link_to image_tag("#{provider}_64.png"), "/auth/#{provider}" %>
+  <% end %>
+</div>
+
+<div class="clear"></div>

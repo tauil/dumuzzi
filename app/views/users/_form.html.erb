@@ -1,0 +1,43 @@
+<div class="user-form">
+  <h1><%= I18n.t :register %></h1>
+  <%= form_for(user) do |f| %>
+
+    <%#= f.error_messages(
+      :header_message => '',
+      :message => 'Following errors were found:',
+      :id=> "flash_error"
+      )
+    %>
+
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    
+    <p>
+      <%= f.label :login %><br />
+      <%= f.text_field :login %>
+    </p>
+    
+    <p>
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </p>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p><%= f.submit %></p>
+  <% end %>
+</div>
+
+<% if current_user != nil && current_user.id == user.id %>
+  <div class="omniauth-connect">
+    <%= render 'omniauth_connect', :authentications => authentications %>
+  </div>
+  <div class="clear"></div>
+<% end %>

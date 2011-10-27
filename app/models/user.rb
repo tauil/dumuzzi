@@ -1,23 +1,25 @@
 class User < ActiveRecord::Base
+  acts_as_authentic do |c|
+    c.ignore_blank_passwords = true #ignoring passwords
+    c.validate_password_field = false #ignoring validations for password fields
+    c.validate_email_field = false
+  end
+
   before_create :generate_ids
+  attr_accessor :password_confirmation
   has_many :authentications
   has_many :domains
   has_many :hosts
   has_many :hosts_services
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
 
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
   end
 
   def apply_omniauth(omniauth)
-    self.email = omniauth['user_info']['email'] if email.blank?
+    #self.email = omniauth['user_info']['email'] if email.blank?
+    self.login = omniauth['user_info']['nickname']
+    self.name = omniauth['user_info']['name']
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
   
@@ -25,3 +27,4 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && super
   end
 end
+
