@@ -37,7 +37,7 @@ Service.create(
 interval = Interval.find(3)
 status = Status.find('-2')
 
-user = User.create(:id => Digest::SHA1.hexdigest('monitor'), :email => 'monitor@dumuzzi.com', :password => 'monitor' )
+user = User.find_by_email('admin@dumuzzi.com')
 
 domains = [ 'dumuzzi.com']
 hostnames = [ 'rally', 'us-ut-1', 'us-fl-1', 
