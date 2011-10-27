@@ -17,7 +17,10 @@ gem 'jquery-rails'
 gem 'therubyracer'
 
 gem 'devise'
-gem 'omniauth'
+gem 'omniauth', "0.3.0"
+gem 'uuid', "2.3.4"
+gem "rails3-generators"
+gem 'authlogic', "3.1.0"
 
 # Daemon
 gem 'foreverb', :git => 'git://github.com/DAddYE/foreverb.git'

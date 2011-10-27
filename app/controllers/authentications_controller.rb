@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+  before_filter :require_user, :only => [:destroy]
+  
   def index
     @authentications = current_user.authentications if current_user
   end
@@ -16,14 +18,28 @@ class AuthenticationsController < ApplicationController
     else
       user = User.new
       user.apply_omniauth(omniauth)
+      user.published = true
+      user.enabled = true
+      user.published_at = Time.now
+      user.can_login = true
+      
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       else
         session[:omniauth] = omniauth.except('extra')
-        redirect_to new_user_registration_url
+        redirect_to new_user_url
       end
     end
+  end
+  
+  def failure
+    flash[:notice] = "Sorry, You din't authorize"
+    redirect_to root_url
+  end
+
+  def blank
+    render :text => "Not Found", :status => 404
   end
   
   def destroy

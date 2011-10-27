@@ -1,0 +1,26 @@
+<div id="omniauth_connect">
+  <% if authentications %>
+    <% unless authentications.empty? %>
+      <p><b>You can sign in to this account using:</b></p>
+      <div class="authentications">
+        <% for authentication in authentications %>
+          <span class="auth_providers_used">
+            <%= image_tag "auth/#{authentication.provider}_32.png" %>
+            <%= link_to image_tag("remove.png"), authentication, :confirm => "Are you sure you want to remove #{authentication.provider} authentication option?", :method => :delete, :class => "omniauth_remove", :title => "remove #{authentication.provider} authentication option?" %>
+          </span>
+        <% end %>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+    <p><b>Add another service to sign in with:</b></p>
+  <% else %>
+    <p><b>Add one of the services to sign in with:</b></p>
+  <% end %>
+  <a href="/auth/twitter" class="auth_provider" title = "Add twitter service to sign in with">
+    <%= image_tag "twitter_32.png", :alt => "Twitter" %>
+  </a>
+  <a href="/auth/facebook" class="auth_provider" title = "Add facebook to sign in with">
+    <%= image_tag "facebook_32.png", :alt => "Facebook" %>
+  </a>
+  <div class="clear"></div>
+</div>

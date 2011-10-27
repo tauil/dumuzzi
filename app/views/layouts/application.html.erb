@@ -16,11 +16,19 @@
             <li><a href="/"><%= I18n.t :home %></a></li>
             <li><a href="/terms"><%= I18n.t :terms %></a></li>
             <li><a href="/about"><%= I18n.t :about %></a></li>
-            <% if @authentications %>
+            <!--<%# if @authentications %>
+              <li><a href="/domains"><%#= I18n.t :domain %></a></li>
+              <li><%#= image_tag("user.jpeg", :alt => (I18n.t :logged), :title => (I18n.t :logged)) %></li>
+            <%# else %>
+              <li><a href="/auth/twitter" ><%#= image_tag("twitter_32.png", :alt => (I18n.t :log), :title => (I18n.t :log)) %></a></li>
+            <%# end %>-->
+            <% if current_user %>
               <li><a href="/domains"><%= I18n.t :domain %></a></li>
-              <li><%= image_tag("user.jpeg", :alt => (I18n.t :logged), :title => (I18n.t :logged)) %></li>
+              <li><a href="/users/<%= current_user.id %>/edit"><%= I18n.t :edit_profile %></a></li>
+              <li><a href="/signout"><%= I18n.t :signout %></a></li>
             <% else %>
-              <li><a href="/auth/twitter" ><%= image_tag("twitter_32.png", :alt => (I18n.t :log), :title => (I18n.t :log)) %></a></li>
+              <li><a href="/users/new"><%= I18n.t :register %></a></li>
+              <li><a href="/signin"><%= I18n.t :signin %></a></li>
             <% end %>
           </ul>
         </nav>

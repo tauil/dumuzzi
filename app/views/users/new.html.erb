@@ -1,0 +1,11 @@
+<%= render 'form', :user => @user, :authentications => @authentications %>
+
+<div class="omniauth-connect">
+  <h1><%= I18n.t :or %></h1>
+  <h3><%= I18n.t :sign_in_with %></h3>
+  <% ["twitter"].each do |provider| %>
+    <%= link_to image_tag("#{provider}_64.png"), "/auth/#{provider}" %>
+  <% end %>
+</div>
+
+<div class="clear"></div>
