@@ -1,5 +1,6 @@
 class Host < ActiveRecord::Base
   before_create :generate_ids
+  after_create :activate
   belongs_to :user
   belongs_to :domain
   belongs_to :status
@@ -12,6 +13,20 @@ class Host < ActiveRecord::Base
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
     self.user_id = self.domain.user_id
+  end
+  
+  def activate
+    service_host_activate = Service.find_by_plugin('host_activate')
+    HostsService.create(
+      :host_id => self.id,
+      :service_id => service_host_activate.id,
+      :user_id => self.user_id,
+      :interval_id => 4,
+      :description => service_host_activate.description,
+      :status_id => -1,
+      :monitor => true,
+      :enabled => true
+    )
   end
   
   def hostname

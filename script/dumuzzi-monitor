@@ -34,6 +34,10 @@ Forever.run do
     DumuzziMonitor::tester
   end
 
+  every 79.seconds do
+    DumuzziMonitor::collector(:host_activate)
+  end
+
   on_error do |e|
     puts "[System] Error #{e.message}"
   end
