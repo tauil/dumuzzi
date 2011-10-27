@@ -28,7 +28,6 @@ module DumuzziMonitor
         queued.hosts_service.status = status
         
         if queued.hosts_service.status_changed?
-          queued.event_description
           queued.new_status
         end
         

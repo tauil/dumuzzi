@@ -1,5 +1,14 @@
 module DumuzziMonitor
   extend self
+  
+  def activate
+    if has_connection?
+      queue(:domain_activate)
+    else
+      puts '[Collector] No network connection available. Tests are disabled.'
+    end     
+  end
+
   def collector
     if has_connection?
       queue
@@ -8,13 +17,25 @@ module DumuzziMonitor
     end
   end
 
-  def queue
+  def queue(target = :host_activate)
+    if target == :host_activate
+      puts "[Collector] Target #{target}."
+    elsif target == :domain_activate
+      puts "[Collector] Target #{target}."
+    else
+      puts "[Collector] Error. Unknow target."
+      return false
+    end
     puts "[Collector] Collecting host data to populate service jobs..."
     Domain.where( :monitor => true, :enabled => true).each do |domain|
       puts "[Collector] Found domain #{domain.name}"
       Host.where( :monitor => true, :enabled => true, :tester => false, :domain_id => domain.id).each do |host|
         puts "[Collector] Opening host #{host.name}.#{domain.name}"
-        HostsService.where( :monitor => true, :enabled => true, :host_id => host.id).each do |host_service|
+        
+        
+        HostsService.where( :monitor => true, :enabled => true, :host_id => host.id, ).each do |host_service|
+        
+        
           puts "[Collector] Found #{host_service.service.name} at #{host_service.service.protocol.name} port #{host_service.service.port}."
           queued_services = Queued.where(:host_id => host.id, :done => false)
           if queued_services.empty?
