@@ -37,7 +37,7 @@ class AuthlogicCreateUsers < ActiveRecord::Migration
     User.create(
       :name => 'Super User',
       :login => 'dumuzzi',
-      :email => 'dumuzzi@koshtech.com.br',
+      :email => 'admin@dumuzzi.com',
       :password => 'dumuzzi2011',
       :password_confirmation => 'dumuzzi2011',
       :published => true,

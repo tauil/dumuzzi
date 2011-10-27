@@ -39,6 +39,7 @@ status = Status.find('-2')
 
 uuid = UUID.new
 user = User.create(:id => uuid.generate, :email => 'monitor@dumuzzi.com', :password => 'monitor' )
+user = User.find_by_email('admin@dumuzzi.com')
 
 domains = [ 'dumuzzi.com']
 hostnames = [ 'rally', 'us-ut-1', 'us-fl-1', 
