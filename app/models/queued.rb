@@ -10,18 +10,6 @@ class Queued < ActiveRecord::Base
   belongs_to :interval
   belongs_to :status
   
-  def event_description
-    last_status = StatusChange.where(:hosts_service_id => self.hosts_service_id).limit(1).order('created_at DESC')[0]
-    self.description = "Host state change was detected on #{host.hostname} IP: #{host.address}.
-
-Test details:
-
-The #{service.name} service status changed from #{last_status.from_status.name} to #{last_status.to_status.name} on #{host.hostname} at #{last_status.created_at}.
-The domain status is #{host.domain.status.name}.
-
-Tested by #{tester.hostname} IP: #{tester.address}"
-  end
-  
   def generate_ids
     self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
   end
@@ -42,13 +30,44 @@ Tested by #{tester.hostname} IP: #{tester.address}"
     status_change.interval = self.interval
     status_change.from_status_id = last_status_id
     status_change.to_status_id = self.hosts_service.status_id
-    status_change.description = self.description
+    status_change.make_subject
+    status_change.make_description
     status_change.status = self.hosts_service.status
     status_change.save
     
     if self.host.send_alert
       DumuzziMailer.warning_message(status_change).deliver
     end unless self.host.domain.send_alert == false
+  end
+
+  def host_activate
+    if self.internal_ping and self.domain_activate
+      puts "Activated host #{host.hostname}"
+      hash = Socket.gethostbyname(host.hostname)[3]
+      ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
+      host.address = ip
+      host.enabled = true
+    else
+      puts "Error activating host #{host.hostname}"
+#      host.address = '0.0.0.0'
+      host.enabled = false
+    end
+    host.save
+  end
+
+  def domain_activate
+    if Service::internal_ping(host.domain.name)
+      hash = Socket.gethostbyname(host.domain.name)[3]
+      ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
+      host.domain.address = ip
+      host.domain.enabled = true
+    else
+      puts "Error activating domain #{host.domain.name}"
+#      host.domain.address = '0.0.0.0'
+      host.domain.enabled = false    
+    end
+    host.domain.save
+    host.save
   end
 
   def internal_ping
