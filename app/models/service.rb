@@ -8,7 +8,8 @@ class Service < ActiveRecord::Base
   has_many :queueds
 
   def generate_ids
-    self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
+    uuid = UUID.new
+    self.id = uuid.generate
   end
 
   def self.internal_ping(hostname)

@@ -5,6 +5,7 @@ class Domain < ActiveRecord::Base
   belongs_to :status
   
   def generate_ids
-    self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
+    uuid = UUID.new
+    self.id = uuid.generate
   end
 end

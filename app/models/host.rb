@@ -11,7 +11,8 @@ class Host < ActiveRecord::Base
   has_many :status_changes
   
   def generate_ids
-    self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
+    uuid = UUID.new
+    self.id = uuid.generate
     self.user_id = self.domain.user_id
   end
   

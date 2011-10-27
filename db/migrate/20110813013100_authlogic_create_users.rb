@@ -35,7 +35,6 @@ class AuthlogicCreateUsers < ActiveRecord::Migration
     add_index :users, :login,           :unique => true
     
     User.create(
-      :id => 1,
       :name => 'Super User',
       :login => 'dumuzzi',
       :email => 'dumuzzi@koshtech.com.br',
@@ -47,9 +46,10 @@ class AuthlogicCreateUsers < ActiveRecord::Migration
       :can_login => true,
       :vip => true
     )
+    
+    sleep 1
         
     User.create(
-      :id => 2,
       :name => 'Visitante',
       :login => 'guest',
       :email => 'guest@koshtech.com.br',

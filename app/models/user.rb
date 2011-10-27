@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :hosts_services
 
   def generate_ids
-    self.id = Digest::SHA1.hexdigest("#{Socket.gethostname} #{srand.to_s} #{DateTime.now.to_s}")
+    uuid = UUID.new
+    self.id = uuid.generate
   end
 
   def apply_omniauth(omniauth)
