@@ -16,7 +16,7 @@ class HostsController < ApplicationController
 
   def new
     @host = Host.new(:domain_id => [ "?", params[:domain_id] ])
-    @domain = Domain.all
+    @domain = Domain.where(:user_id => current_user.id).order('created_at DESC')
     
     respond_with @host
   end
