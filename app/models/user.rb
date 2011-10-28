@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     uuid = UUID.new
     self.id = uuid.generate
   end
+  
+  def self.find_by_login_or_email(login)
+    find_by_login(login) || find_by_email(login)
+  end
 
   def apply_omniauth(omniauth)
     #self.email = omniauth['user_info']['email'] if email.blank?

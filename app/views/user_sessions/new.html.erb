@@ -17,6 +17,7 @@
       <%= f.label :password %><br />
       <%= f.password_field :password %>
     </p>
+    <p><%= check_box :user_session, :remember_me %>Remember me</p>
     <p><%= f.submit I18n.t :signin %></p>
   <% end %>
 </div>

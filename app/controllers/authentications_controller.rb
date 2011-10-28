@@ -10,7 +10,8 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if authentication
       flash[:notice] = "Signed in successfully."
-      sign_in_and_redirect(:user, authentication.user)
+      UserSession.create(authentication.user, true)
+      redirect_to root_url
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."
@@ -25,7 +26,8 @@ class AuthenticationsController < ApplicationController
       
       if user.save
         flash[:notice] = "Signed in successfully."
-        sign_in_and_redirect(:user, user)
+        UserSession.create(user, true)
+        redirect_to root_url
       else
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_url
