@@ -17,7 +17,7 @@
             <li><a href="/terms"><%= I18n.t :terms %></a></li>
             <li><a href="/about"><%= I18n.t :about %></a></li>
             <% if current_user %>
-              <li><a href="/domains"><%= I18n.t :domain %></a></li>
+              <li><a href="/domains"><%= I18n.t :my_domains %></a></li>
               <li><a href="/users/<%= current_user.id %>/edit"><%= I18n.t :edit_profile %></a></li>
               <li><a href="/signout"><%= I18n.t :signout %></a></li>
             <% else %>

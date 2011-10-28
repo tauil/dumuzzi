@@ -18,6 +18,7 @@ class HostsController < ApplicationController
   def new
     @host = Host.new(:domain_id => [ "?", params[:domain_id] ])
     @domain = Domain.where(:user_id => current_user.id).order('created_at DESC')
+    @domains = Domain.where(:id => params[:domain_id]).first
     
     respond_with @host
   end
@@ -25,6 +26,7 @@ class HostsController < ApplicationController
   def edit
     @host = Host.where(:id => params[:id]).first
     @domain = Domain.all
+    @domains = Domain.where(:id => @host.domain_id).first
     respond_with @host
   end
 

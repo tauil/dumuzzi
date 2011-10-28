@@ -1,5 +1,5 @@
 <div id="crud">
-  <h3 class="tabs_involved"><%= I18n.t :listing_hosts %></h3>
+  <h3 class="tabs_involved"><%= I18n.t :listing_hosts %> <%= @domain.name %></h3>
   <div class="tab_container">
 	  <div id="tab1" class="tab_content">
       <table class="tablesorter" cellspacing="0">
@@ -35,5 +35,5 @@
 
   <br />
 
-  <%= link_to I18n.t(:new_host), new_host_path(:domain_id => @domain.id) %>
+  <%= link_to I18n.t(:add_host), new_host_path(:domain_id => @domain.id) %>
 </div>
