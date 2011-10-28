@@ -11,4 +11,12 @@ module ApplicationHelper
     return image_tag(object.to_s + '.png', {:alt => alt, :title => alt})
   end
   
+  def outgoing_menssage
+    if notice
+      raw "<h4 class='alert_success'>#{notice}</h4>"
+    elsif alert
+      raw "<h4 class='alert_error'>#{alert}</h4>"
+    end
+  end
+  
 end

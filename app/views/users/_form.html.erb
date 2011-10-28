@@ -2,12 +2,7 @@
   <h1><%= I18n.t :register %></h1>
   <%= form_for(user) do |f| %>
 
-    <%#= f.error_messages(
-      :header_message => '',
-      :message => 'Following errors were found:',
-      :id=> "flash_error"
-      )
-    %>
+    <%= outgoing_menssage %>
 
     <p>
       <%= f.label :name %><br />
