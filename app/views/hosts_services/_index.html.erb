@@ -5,7 +5,6 @@
       <table class="tablesorter" cellspacing="0">
         <thead>
           <tr>
-            <th><%= I18n.t :host %></th>
             <th><%= I18n.t :service %></th>
             <th><%= I18n.t :interval %></th>
             <th><%= I18n.t :status %></th>
@@ -19,10 +18,9 @@
         <tbody>
         <% @hosts_service.each do |hosts_service| %>
           <tr>
-            <td><%= hosts_service.host.name %></td>
-            <td><%= hosts_service.service.name unless hosts_service.service.nil? %></td>
-            <td><%= hosts_service.interval.name unless hosts_service.interval.nil? %></td>
-            <td><%= hosts_service.status.name unless hosts_service.status.nil? %></td>
+            <td><%= hosts_service.service.name %></td>
+            <td><%= hosts_service.interval.name %></td>
+            <td><%= hosts_service.status.name %></td>
             <td><%= show_icon hosts_service.monitor, "enabled", "disabled" %></td>
             <td><%= show_icon hosts_service.enabled, "enabled", "disabled" %></td>
             <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), hosts_service %></td>

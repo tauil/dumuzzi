@@ -9,7 +9,8 @@ class HostsController < ApplicationController
     
   def show
     @host = Host.where(:id => params[:id]).first
-    @hosts_service = @host.hosts_service
+    service_host_activate_id = Service.find_by_plugin('host_activate').id
+    @hosts_service = HostsService.where("service_id <> '#{service_host_activate_id}'").where(:host_id => @host.id)
     
     respond_with @host
   end

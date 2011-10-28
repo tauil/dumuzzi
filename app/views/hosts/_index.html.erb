@@ -7,7 +7,6 @@
           <tr>
             <th><%= I18n.t :name %></th>
             <th><%= I18n.t :address %></th>
-            <th><%= I18n.t :domain %></th>
             <th><%= I18n.t :status %></th>
             <th><%= I18n.t :monitor %></th>
             <th><%= I18n.t :enabled %></th>
@@ -19,10 +18,9 @@
         <tbody>
         <% @hosts.each do |host| %>
           <tr>
-            <td><%= host.name %></td>
+            <td><%= host.hostname %></td>
             <td><%= host.address %></td>
-            <td><%= host.domain.name unless host.domain.nil? %></td>
-            <td><%= host.status.name unless host.status.nil? %></td>
+            <td><%= host.status.name %></td>
             <td><%= show_icon host.monitor, "enabled", "disabled" %></td>
             <td><%= show_icon host.enabled, "enabled", "disabled" %></td>
             <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), host %></td>
