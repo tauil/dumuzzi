@@ -42,33 +42,47 @@ class Queued < ActiveRecord::Base
   end
 
   def host_activate
-    if self.internal_ping and self.domain_activate
+    if self.domain_activate and self.internal_ping
       puts "Activated host #{host.hostname}"
       hash = Socket.gethostbyname(host.hostname)[3]
       ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
       host.address = ip
       host.enabled = true
+      host.status_id = -2
+      hosts_service.status_id = -2
+      hosts_service.save
+      host.save
+      return true
     else
       puts "Error activating host #{host.hostname}"
-#      host.address = '0.0.0.0'
+      host.address = '0.0.0.0'
       host.enabled = false
+      host.status_id = 2
+      hosts_service.status_id = 2
+      hosts_service.save
+      host.save
+      return false
     end
-    host.save
   end
 
   def domain_activate
     if Service::internal_ping(host.domain.name)
+      puts "Activated domain #{host.domain.name}"
       hash = Socket.gethostbyname(host.domain.name)[3]
       ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
       host.domain.address = ip
       host.domain.enabled = true
+      host.domain.status_id = -2
+      host.domain.save
+      return true
     else
       puts "Error activating domain #{host.domain.name}"
-#      host.domain.address = '0.0.0.0'
+      host.domain.address = '0.0.0.0'
       host.domain.enabled = false    
+      host.domain.status_id = 2
+      host.domain.save
+      return false
     end
-    host.domain.save
-    host.save
   end
 
   def internal_ping

@@ -35,7 +35,7 @@ Forever.run do
   end
 
   every 79.seconds do
-    DumuzziMonitor::collector(:host_activate)
+    DumuzziMonitor::activate
   end
 
   on_error do |e|
