@@ -16,24 +16,25 @@ class HostsController < ApplicationController
   end
 
   def new
-    @host = Host.new(:domain_id => [ "?", params[:domain_id] ])
-    @domain = Domain.where(:user_id => current_user.id).order('created_at DESC')
-    @domains = Domain.where(:id => params[:domain_id]).first
-    
+    @host = Host.new(:domain_id => params[:domain_id])
+    @domain = Domain.where(:id => @host.domain.id).first
+    @domains = Domain.where(:id => @host.domain.id)
+
     respond_with @host
   end
 
   def edit
     @host = Host.where(:id => params[:id]).first
-    @domain = Domain.all
-    @domains = Domain.where(:id => @host.domain_id).first
+    @domain = Domain.where(:id => @host.domain.id).first
+    @domains = Domain.where(:id => @host.domain.id)
+
     respond_with @host
   end
 
   def create
     @host = Host.new params[:host]
     @host.user_id = current_user.id
-    
+
     if @host.save
       flash[:notice] = I18n.t :host_created
       respond_with @host

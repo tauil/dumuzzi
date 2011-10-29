@@ -16,7 +16,7 @@
 
   <fieldset>
     <label><b><%= I18n.t :domain %></b></label>
-    <%= f.collection_select(:domain_id, @domain, :id, :name, {:prompt => 'Selecione'} ) %>
+    <%= f.collection_select(:domain_id, @domains, :id, :name, {:prompt => 'Selecione'} ) %>
   </fieldset>
   <fieldset>
     <label><b><%= I18n.t :name %></b></label><br />

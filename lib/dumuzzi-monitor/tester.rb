@@ -23,7 +23,7 @@ module DumuzziMonitor
           puts "[Tester] #{queued.service.name} Error."
         end
         
-#        domain.status = status
+        domain.status = status
         queued.host.status = status
         queued.hosts_service.status = status
         
