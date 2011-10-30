@@ -6,8 +6,6 @@ module DumuzziMonitor
       puts "[Tester] Starting tests..."
       local_tester_id = Rails.application.config.local_tester[:id]
       Queued.where(:tester_id => local_tester_id, :done => false).where(["run_at <= ?", Time.now]).each do |queued|
-        host = queued.host
-        domain = host.domain
       
         puts "[Tester] Testing #{queued.service.name} to #{queued.host.name}.#{queued.host.domain.name} at #{queued.service.protocol.name} port #{queued.service.port}."
         puts "[Tester] Using plugin #{queued.service.plugin}"
@@ -23,7 +21,7 @@ module DumuzziMonitor
           puts "[Tester] #{queued.service.name} Error."
         end
         
-        domain.status = status
+        queued.host.domain.status = status
         queued.host.status = status
         queued.hosts_service.status = status
         
@@ -31,7 +29,7 @@ module DumuzziMonitor
           queued.new_status
         end
         
-        domain.save
+        queued.host.domain.save
         queued.hosts_service.save
         queued.host.save
         queued.save
