@@ -38,34 +38,31 @@
           <% unless @hosts.nil? %>
           <div id="sidebar">
             <h1><%= I18n.t :online %></h1>
-            <ul>
               <% @hosts.each do |host| %>
-                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
-              <% end %>
-            </ul>
+              <p><a href="http://<%= host.hostname %>"><%= host.hostname %></a></p>
+            <% end %>
           </div>
           <% end %>
           <% unless @new_hosts.nil? %>
           <div id="sidebar">
             <h1><%= I18n.t :newest %></h1>
-            <ul>
-              <% @new_hosts.each do |host| %>
-                <li><a href="http://<%= host.hostname %>"><%= host.hostname %></a></li>
-              <% end %>
-            </ul>
+            <% @new_hosts.each do |host| %>
+              <p><a href="http://<%= host.hostname %>"><%= host.hostname %></a></p>
+            <% end %>
           </div>
           <% end %>
           <% unless @testers.nil? %>
           <div id="sidebar">
             <h1><%= I18n.t :testers %></h1>
-            <ul>
-              <% @testers.each do |tester| %>
-                <li><a href="http://<%= tester.hostname %>"><%= tester.hostname %></a></li>
-              <% end %>
-            </ul>
+            <% @testers.each do |tester| %>
+              <p><a href="http://<%= tester.hostname %>"><%= tester.hostname %></a></p>
+            <% end %>
           </div>
           <% end %>
         </aside>
+        
+        <%= render :partial => 'shared/sidebar_ads'%>
+        
       </section>
       
       <footer>
