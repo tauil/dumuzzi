@@ -39,7 +39,11 @@
   
 </div>
   <div class="submit_link">
-    <%= f.submit %>
+    <% if params[:action] == 'new' %>
+      <%= f.submit I18n.t(:add_domain) %>
+    <% else %>
+      <%= f.submit I18n.t(:edit_domain) %>
+    <% end %>
     <input type="reset" value="Reset">
     <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), domains_path %>
     <% if params[:action] == 'edit' %>
