@@ -16,7 +16,7 @@
         <tbody>
         <% @hosts.each do |host| %>
           <tr>
-            <td><%= link_to host.hostname, host %></td>
+            <td><%= link_to host.name, host %></td>
             <td><%= host.address %></td>
             <td><%= host.status.name %></td>
             <td><%= show_icon host.monitor, "enabled", "disabled" %></td>

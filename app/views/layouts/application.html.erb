@@ -38,7 +38,7 @@
           <% unless @hosts.nil? %>
           <div id="sidebar">
             <h1><%= I18n.t :online %></h1>
-              <% @hosts.each do |host| %>
+            <% @hosts.each do |host| %>
               <p><a href="http://<%= host.hostname %>"><%= host.hostname %></a></p>
             <% end %>
           </div>
