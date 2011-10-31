@@ -7,3 +7,4 @@ config/database.yml
 config/email.yml
 config/tester.yml
 config/unicorn.rb
+app/views/shared/_sidebar_ads.html.erb
