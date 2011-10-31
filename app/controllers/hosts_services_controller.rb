@@ -71,7 +71,7 @@ class HostsServicesController < ApplicationController
   
   protected
   def init
-    @host_service = HostsService.where(:id => params[:id]).first
+    @hosts_service = HostsService.where(:id => params[:id]).first
   end
     
 end
