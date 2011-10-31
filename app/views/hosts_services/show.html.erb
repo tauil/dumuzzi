@@ -1,5 +1,4 @@
   <div id="show">
-    <%= outgoing_menssage %>
     <h3><%= I18n.t :service %> <%= @hosts_service.service.name unless @hosts_service.service.nil?  %> <%= I18n.t :of_host %> <%= @hosts_service.host.name unless @hosts_service.host.nil? %> <%= link_to image_tag("icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_hosts_service_path(@hosts_service) %> <%= link_to image_tag("icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), host_path(@hosts_service.host_id) %></h3>
     <div class="tab_container">
 		  <div id="tab1" class="tab_content">
