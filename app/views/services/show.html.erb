@@ -13,7 +13,7 @@
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :protocol %></b></th>
-            <td><%= @service.protocol.name %></td>            
+            <td><%= @service.protocol.name unless @service.protocol.nil? %></td>            
 			    </tr>
           <tr> 
             <td><b><%= I18n.t :port %></b></th>

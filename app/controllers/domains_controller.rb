@@ -1,4 +1,6 @@
-class DomainsController < ApplicationController    
+class DomainsController < ApplicationController 
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -8,7 +10,6 @@ class DomainsController < ApplicationController
   end
     
   def show
-    @domain = Domain.where(:id => params[:id]).first
     @hosts = @domain.hosts
     
     respond_with @domain
@@ -21,7 +22,6 @@ class DomainsController < ApplicationController
   end
 
   def edit
-    @domain = Domain.where(:id => params[:id]).first
     respond_with @domain
   end
 
@@ -38,8 +38,6 @@ class DomainsController < ApplicationController
   end
 
   def update
-    @domain = Domain.where(:id => params[:id]).first
-  
     if @domain.update_attributes params[:domain]
       flash[:notice] = I18n.t :domain_updated
       respond_with @domain
@@ -49,10 +47,14 @@ class DomainsController < ApplicationController
   end
 
   def destroy
-    @domain = Domain.where(:id => params[:id]).first
     @domain.destroy
     
     respond_with @domain
+  end
+  
+  protected
+  def init
+    @domain = Domain.where(:id => params[:id]).first
   end
     
 end

@@ -1,4 +1,6 @@
-class QueuedsController < ApplicationController    
+class QueuedsController < ApplicationController
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -8,8 +10,6 @@ class QueuedsController < ApplicationController
   end
     
   def show
-    @queued = Queued.where(:id => params[:id]).first
-    
     respond_with @queued
   end
 
@@ -20,7 +20,6 @@ class QueuedsController < ApplicationController
   end
 
   def edit
-    @queued = Queued.where(:id => params[:id]).first
     respond_with @queued
   end
 
@@ -36,8 +35,6 @@ class QueuedsController < ApplicationController
   end
 
   def update
-    @queued = Queued.where(:id => params[:id]).first
-  
     if @queued.update_attributes params[:queued]
       flash[:notice] = I18n.t :queued_updated
       respond_with @queued
@@ -47,10 +44,14 @@ class QueuedsController < ApplicationController
   end
 
   def destroy
-    @queued = Queued.where(:id => params[:id]).first
     @queued.destroy
     
     respond_with @queued
+  end
+  
+  protected
+  def init
+    @queued = Queued.where(:id => params[:id]).first
   end
     
 end

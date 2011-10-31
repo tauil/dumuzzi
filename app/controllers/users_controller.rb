@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :find_user, :only => [:edit, :update]
+  before_filter :init, :only => [:edit, :update]
 
   def new
     @user = User.new
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   protected
-  def find_user
+  def init
     @user = User.where(:id => params[:id]).first
   end
 
