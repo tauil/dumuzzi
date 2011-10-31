@@ -1,4 +1,6 @@
 class StateChangesController < ApplicationController    
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -8,8 +10,6 @@ class StateChangesController < ApplicationController
   end
     
   def show
-    @state_change = StateChange.where(:id => params[:id]).first
-    
     respond_with @state_change
   end
 
@@ -20,7 +20,6 @@ class StateChangesController < ApplicationController
   end
 
   def edit
-    @state_change = StateChange.where(:id => params[:id]).first
     respond_with @state_change
   end
 
@@ -36,8 +35,6 @@ class StateChangesController < ApplicationController
   end
 
   def update
-    @state_change = StateChange.where(:id => params[:id]).first
-  
     if @state_change.update_attributes params[:state_change]
       flash[:notice] = I18n.t :state_change_updated
       respond_with @state_change
@@ -47,10 +44,14 @@ class StateChangesController < ApplicationController
   end
 
   def destroy
-    @state_change = StateChange.where(:id => params[:id]).first
     @state_change.destroy
     
     respond_with @state_change
+  end
+  
+  protected
+  def init
+    @state_change = StateChange.where(:id => params[:id]).first
   end
     
 end

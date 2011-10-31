@@ -1,4 +1,6 @@
-class HostsServicesController < ApplicationController    
+class HostsServicesController < ApplicationController
+  before_filter :init, :only => [:show, :edit, :update, :destroy, :manual_test, :threads_test]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -7,9 +9,7 @@ class HostsServicesController < ApplicationController
     respond_with @hosts_services
   end
     
-  def show
-    @hosts_service = HostsService.where(:id => params[:id]).first
-    
+  def show 
     respond_with @hosts_service
   end
 
@@ -24,7 +24,6 @@ class HostsServicesController < ApplicationController
   end
 
   def edit
-    @hosts_service = HostsService.where(:id => params[:id]).first
     @services = Service.where(:enabled => true, :monitor => true, :public => true, :id => @hosts_service.service.id)
     @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:id => @hosts_service.host.id)
@@ -44,7 +43,6 @@ class HostsServicesController < ApplicationController
   end
 
   def update
-    @hosts_service = HostsService.where(:id => params[:id]).first
     @hosts_service.enabled = true
   
     if @hosts_service.update_attributes params[:hosts_service]
@@ -56,22 +54,24 @@ class HostsServicesController < ApplicationController
   end
 
   def destroy
-    @hosts_service = HostsService.where(:id => params[:id]).first
     @hosts_service.destroy
     
     respond_with @hosts_service
   end
   
   def threads_test
-    @host_service = HostsService.where(params[:id]).first
     worker_response = MiddleMan.worker(:monitor_worker).threads_test(:arg => {:id => @host_service.id})
     redirect_to @hosts_service.host, notice: "Threads Test was successfully queued. Result => #{worker_response}"
   end
     
   def manual_test
-    @host_service = HostsService.where(params[:id]).first
     worker_response = MiddleMan.worker(:monitor_worker).services_check(:arg => {:id => @host_service.id})
     redirect_to @host_service, notice: "Manual Test was successfully executed. Result => #{worker_response}"
+  end
+  
+  protected
+  def init
+    @host_service = HostsService.where(:id => params[:id]).first
   end
     
 end

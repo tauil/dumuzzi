@@ -1,4 +1,6 @@
-class ProtocolsController < ApplicationController    
+class ProtocolsController < ApplicationController
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -7,9 +9,7 @@ class ProtocolsController < ApplicationController
     respond_with @protocols
   end
     
-  def show
-    @protocol = Protocol.where(:id => params[:id]).first
-    
+  def show    
     respond_with @protocol
   end
 
@@ -20,7 +20,6 @@ class ProtocolsController < ApplicationController
   end
 
   def edit
-    @protocol = Protocol.where(:id => params[:id]).first
     respond_with @protocol
   end
 
@@ -36,7 +35,6 @@ class ProtocolsController < ApplicationController
   end
 
   def update
-    @protocol = Protocol.where(:id => params[:id]).first
   
     if @protocol.update_attributes params[:protocol]
       flash[:notice] = I18n.t :protocol_updated
@@ -47,10 +45,14 @@ class ProtocolsController < ApplicationController
   end
 
   def destroy
-    @protocol = Protocol.where(:id => params[:id]).first
     @protocol.destroy
     
     respond_with @protocol
+  end
+  
+  protected
+  def init
+    @protocol = Protocol.where(:id => params[:id]).first
   end
     
 end

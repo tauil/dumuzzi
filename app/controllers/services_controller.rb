@@ -1,4 +1,6 @@
-class ServicesController < ApplicationController    
+class ServicesController < ApplicationController 
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  
   respond_to :html, :xml, :js, :json
 
   def index
@@ -8,8 +10,6 @@ class ServicesController < ApplicationController
   end
     
   def show
-    @service = Service.where(:id => params[:id]).first
-    
     respond_with @service
   end
 
@@ -21,7 +21,6 @@ class ServicesController < ApplicationController
   end
 
   def edit
-    @service = Service.where(:id => params[:id]).first
     @protocol = Protocol.all
     respond_with @service
   end
@@ -38,8 +37,6 @@ class ServicesController < ApplicationController
   end
 
   def update
-    @service = Service.where(:id => params[:id]).first
-  
     if @service.update_attributes params[:service]
       flash[:notice] = I18n.t :service_updated
       respond_with @service
@@ -49,10 +46,14 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    @service = Service.where(:id => params[:id]).first
     @service.destroy
     
     respond_with @service
+  end
+  
+  protected
+  def init
+    @service = Service.where(:id => params[:id]).first
   end
     
 end

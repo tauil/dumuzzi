@@ -1,4 +1,6 @@
-class HostsController < ApplicationController    
+class HostsController < ApplicationController
+  before_filter :init, :only => [:show, :edit, :update, :destroy]
+    
   respond_to :html, :xml, :js, :json
 
   def index
@@ -8,7 +10,6 @@ class HostsController < ApplicationController
   end
     
   def show
-    @host = Host.where(:id => params[:id]).first
     service_host_activate_id = Service.find_by_plugin('host_activate').id
     @hosts_service = HostsService.where("service_id <> '#{service_host_activate_id}'").where(:host_id => @host.id)
     
@@ -24,7 +25,6 @@ class HostsController < ApplicationController
   end
 
   def edit
-    @host = Host.where(:id => params[:id]).first
     @domain = Domain.where(:id => @host.domain.id).first
     @domains = Domain.where(:id => @host.domain.id)
 
@@ -44,8 +44,6 @@ class HostsController < ApplicationController
   end
 
   def update
-    @host = Host.where(:id => params[:id]).first
-  
     if @host.update_attributes params[:host]
       flash[:notice] = I18n.t :host_updated
       respond_with @host
@@ -55,11 +53,15 @@ class HostsController < ApplicationController
   end
 
   def destroy
-    @host = Host.where(:id => params[:id]).first
     domain = @host.domain
     @host.destroy
     
     respond_with @host
+  end
+  
+  protected
+  def init
+    @host = Host.where(:id => params[:id]).first
   end
     
 end
