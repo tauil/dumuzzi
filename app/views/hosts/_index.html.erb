@@ -9,8 +9,6 @@
             <th><%= I18n.t :address %></th>
             <th><%= I18n.t :status %></th>
             <th><%= I18n.t :monitor %></th>
-            <th><%= I18n.t :enabled %></th>
-            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -18,12 +16,10 @@
         <tbody>
         <% @hosts.each do |host| %>
           <tr>
-            <td><%= host.hostname %></td>
+            <td><%= link_to host.hostname, host %></td>
             <td><%= host.address %></td>
             <td><%= host.status.name %></td>
             <td><%= show_icon host.monitor, "enabled", "disabled" %></td>
-            <td><%= show_icon host.enabled, "enabled", "disabled" %></td>
-            <td><%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), host %></td>
             <td><%= link_to image_tag("/assets/icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_host_path(host) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => host.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
