@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController 
-  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  before_filter :init, :only => [:show, :edit, :update, :destroy, :monitored]
   
   respond_to :html, :xml, :js, :json
 
@@ -49,6 +49,17 @@ class DomainsController < ApplicationController
   def destroy
     @domain.destroy
     
+    respond_with @domain
+  end
+  
+  def monitored
+    if @domain.monitor == false
+      @domain.monitor = true
+    else
+      @domain.monitor = false
+    end
+    
+    @domain.save
     respond_with @domain
   end
   

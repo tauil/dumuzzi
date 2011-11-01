@@ -7,3 +7,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+  
+  // function to change the state of highlight, publish and enable
+  // change_state(#{product.id}, 'products/highlight')
+  function change_state(id, path){
+    $.ajax({
+      url: '/'+ path,
+      type: 'post',
+      data: {id: id},
+      dataType: 'script'
+    });
+  }
