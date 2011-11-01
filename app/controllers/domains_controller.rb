@@ -28,6 +28,7 @@ class DomainsController < ApplicationController
   def create
     @domain = Domain.new params[:domain]
     @domain.user_id = current_user.id
+    @domain.monitor = false
     
     if @domain.save
       flash[:notice] = I18n.t :domain_created
@@ -54,9 +55,14 @@ class DomainsController < ApplicationController
   
   def monitored
     if @domain.monitor == false
-      @domain.monitor = true
+      if current_user.email.nil?
+        @user = current_user
+      else
+        @domain.monitor = true
+      end
+    
     else
-      @domain.monitor = false
+      @domain.monitor = false      
     end
     
     @domain.save
