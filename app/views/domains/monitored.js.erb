@@ -1,0 +1,23 @@
+<% if @user.nil? %>
+  var monitored = 'domains/monitored';
+  var domain_id = '<%= @domain.id %>';
+  var domain = $("#domain_"+ domain_id +"_monitor");
+  domain.empty();
+  domain.append(''+
+  '<a onclick="change_state(domain_id, monitored)" href="javascript:void(0);">'+
+    '<%= show_icon(@domain.monitor, "enabled", "disabled") %>'+
+  '</a>');
+<% else %>
+  $('article').append(""+
+  '<h4 class="alert_error">Cadastre o seu email para poder receber alertas</h4>'+
+  '<div class="user-form">'+
+    '<h1><%= I18n.t :register_email %></h1>'+
+    '<%= form_for(@user) do |f| %>'+
+      '<p>'+
+        '<%= f.label :email %><br />'+
+        '<%= f.text_field :email %>'+
+      '</p>'+
+      '<p><%= f.submit %></p>'+
+    '<% end %>'+
+  '</div>');
+<% end %>

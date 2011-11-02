@@ -247,3 +247,4 @@ en:
     edit_hosts_service: "Edit service monitoring"
     adding_hosts_service: "Adding to the monitoring service"
     of_host: "of the Host"
+    register_email: "Register Email"

@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController 
-  before_filter :init, :only => [:show, :edit, :update, :destroy]
+  before_filter :init, :only => [:show, :edit, :update, :destroy, :monitored]
   
   respond_to :html, :xml, :js, :json
 
@@ -28,6 +28,7 @@ class DomainsController < ApplicationController
   def create
     @domain = Domain.new params[:domain]
     @domain.user_id = current_user.id
+    @domain.monitor = false
     
     if @domain.save
       flash[:notice] = I18n.t :domain_created
@@ -49,6 +50,22 @@ class DomainsController < ApplicationController
   def destroy
     @domain.destroy
     
+    respond_with @domain
+  end
+  
+  def monitored
+    if @domain.monitor == false
+      if current_user.email.nil?
+        @user = current_user
+      else
+        @domain.monitor = true
+      end
+    
+    else
+      @domain.monitor = false      
+    end
+    
+    @domain.save
     respond_with @domain
   end
   

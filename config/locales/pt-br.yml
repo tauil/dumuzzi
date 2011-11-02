@@ -247,3 +247,4 @@ pt-br:
     edit_hosts_service: "Editar serviço do monitoramento"
     adding_hosts_service: "Adicionando serviço ao monitoramento"
     of_host: "do Host"
+    register_email: "Cadastre o Email"

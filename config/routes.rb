@@ -10,7 +10,12 @@ Dumuzzi::Application.routes.draw do
   end
   resources :services
   resources :hosts
-  resources :domains
+  
+  resources :domains do
+    collection do
+      post :monitored
+    end
+  end
 
   match '/terms' => 'static_pages#terms'
   match '/about' => 'static_pages#about'

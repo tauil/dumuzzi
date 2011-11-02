@@ -1,3 +1,4 @@
+<%= javascript_include_tag "application.js" %>
 <div id="crud">
   <h3 class="tabs_involved"><%= I18n.t :my_domains %></h3>
   <div class="tab_container">
@@ -18,8 +19,8 @@
           <tr>
             <td><%= link_to domain.name, domain %></td>
             <td><%= domain.address %></td>
-            <td><%= domain.status.name %></td>
-            <td><%= show_icon domain.monitor, "enabled", "disabled" %></td>
+            <td><%= domain.status.name unless domain.status.nil? %></td>
+            <td id="domain_<%= domain.id %>_monitor"><%= link_to show_icon(domain.monitor, "enabled", "disabled"), "javascript:void(0);", :onclick => "change_state('#{domain.id}', 'domains/monitored')" %></td>
             <td><%= link_to image_tag("icn_edit_article.png", :alt => I18n.t(:edit), :title => I18n.t(:edit), :border => 0), edit_domain_path(domain) %></td>
             <td><%= button_to I18n.t(:delete), { :action => "destroy", :id => domain.id }, :confirm => I18n.t(:are_you_sure), :method => :delete %></td>
           </tr>
