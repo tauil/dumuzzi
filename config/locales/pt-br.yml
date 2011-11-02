@@ -248,3 +248,27 @@ pt-br:
     adding_hosts_service: "Adicionando serviço ao monitoramento"
     of_host: "do Host"
     register_email: "Cadastre o Email"
+
+    #home_titles
+
+    title_home_one: "O que é?"
+    title_home_two: "Como surgiu"
+    title_home_three: "Proposta"
+
+    #home_texts
+
+    text_home_one: "<p>Dumuzzi é um sistema de monitoramento de máquinas e serviços pela internet. Seu objetivo é verificar o estado atual de serviços em máquinas préviamente configuradas, enviando alertas ao administrador.</p>
+          <p>O nome Dumuzzi vem da Mitologia Sumérica, onde Dumuzzi representava um filho fiel, um deus guardião das portas do céu. Um serviço de monitoramento eficiente é o guardião do portal dos céus para um SysAdmin, já que, saber que seus servidores estão online e operando em perfeito estado, não tem preço.</p>
+          
+          <p>O serviço é gratuito, limitado à dez (10) domínios por usuário, podendo ser utilizado por qualquer pessoa que queria monitorar serviços ou websites.</p>"
+
+    ##################
+
+    text_home_two: "<p>Dumuzzi nasceu na competição Rally on Rails, feito pela Equipe Cidadelas Jedis e é distribuído sob a licença CDDL, aberto a colaborações.</p>"
+
+    ##################
+
+    text_home_three: "<p>Nossa proposta é disponibilizar um serviço de monitoramento que ao mesmo tempo seja simples e confiavel. Para isto, os testes são feitos de hosts diferentes, em diferentes continentes e provedores de serviço.</p>"
+    #################################### FIM HOME #####################################################################
+
+    license_sentence: "Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)"
