@@ -258,7 +258,7 @@ en:
     #home_texts
 
     text_home_one: "<p>Dumuzzi is a system monitoring machines and services by internet. Your goal is check the state current of services in machines previously configured sending alerts to administrator.</p>
-          <p>The name Dumuzzi comes from Sumer Mythology, where Dumuzzi represented a faithful son, a guardian god of doors the sky. A service monitoring efficient is the guardian of heavens for a SysAdmin, since, know that your servers are online and operating in perfect state, has no price.</p>
+          <p>The name Dumuzzi comes from Sumerian Mythology, where Dumuzzi represented a faithful son, a guardian god of doors the sky. A service monitoring efficient is the guardian of heavens for a SysAdmin, since, know that your servers are online and operating in perfect state, has no price.</p>
           
           <p>The service is free, limited to ten (10) domains per user, can be utilized by any person that wanted monitor services or websites.</p>"
 
@@ -269,6 +269,25 @@ en:
     ##################
 
     text_home_three: "<p>Our proposal is available a service monitoring the at the same time be simple and reliable. For this, the tests are done of different hosts, in different continents and providers of services.</p>"
-    #################################### FIM HOME #####################################################################
+    #################################### END HOME #####################################################################
 
     license_sentence: "Attributed to license Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)"
+
+    # terms
+
+    term_index: "Our proposal is available a service of monitoring that at the same time be simple and reliable. For this, the tests are done of different hosts, in different continents and providers of services."
+
+    term_uses: "The terms of use:"
+    term_used_one: "1 - Dumuzzi it only monitors the services remotely, not carrying out any action type of recovery."
+    term_used_two: "2 - We guarantee the sending of messages by e-mail."
+    term_used_three: "3 - The service predicts the sending of instant messaging."
+    term_used_four: "4 - In the event of sending of messages by SMS, the costs will be on account of the user, save in the cases there are sponsors. The user, in this case, should accept the receipt of publicity in each message."
+    term_used_five: "5 - Dumuzzi does not require the installation of customers or agents in the systems tested."
+    term_used_six: "6 - Dumuzzi utilizes only technology and open source components."
+    term_used_seven: "7 - Dumuzzi is done to run on Linux and Unix."
+    term_used_eight: "8 - Dumuzzi does not have technical support possible to hire, either on-site, remote and/or telephone. We offer a basic support by e-mail and by means of thread. Its use is on account and risk the user."
+    term_used_nine: "9 - The cancellation of its use can be done at any time, in lien or any warnings."
+    term_used_ten: "10 - Dumuzzi does not guarantee the exportation and/or migration of data registered."
+    #################################### END TERMS #####################################################################
+
+    technologies_used: "Learn about the technologies used:"
