@@ -1,7 +1,6 @@
 <div class="user-form">
   <h1><%= I18n.t :register %></h1>
   <%= form_for(user) do |f| %>
-
     <p>
       <%= f.label :name %><br />
       <%= f.text_field :name %>
@@ -27,6 +26,12 @@
     <p><%= f.submit %></p>
   <% end %>
 </div>
+
+<% if params[:action] == 'edit' %>
+<div id="image_user">
+  <%= image_tag avatar_url(user) %>
+</div>
+<% end %>
 
 <% if current_user != nil && current_user.id == user.id %>
   <div class="omniauth-connect">
