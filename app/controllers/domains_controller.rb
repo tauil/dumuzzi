@@ -4,13 +4,17 @@ class DomainsController < ApplicationController
   respond_to :html, :xml, :js, :json
 
   def index
-    @domains = Domain.where(:user_id => current_user.id).order('created_at DESC')
+    if current_user.is_admin
+      @domains = Domain.order('created_at DESC')
+    else
+      @domains = Domain.where(:user_id => current_user.id).order('created_at DESC')
+    end
     
     respond_with @domains
   end
     
   def show
-    @hosts = @domain.hosts
+    @hosts = Host.where(:domain_id => @domain.id, :is_domain_host => false).order('created_at ASC')
     
     respond_with @domain
   end
