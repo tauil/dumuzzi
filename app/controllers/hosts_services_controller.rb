@@ -15,7 +15,8 @@ class HostsServicesController < ApplicationController
 
   def new
     @hosts_service = HostsService.new :host_id => params[:host_id]
-    @hosts_service.user_id = @hosts_service.host.user_id unless @hosts_service.host.nil?
+    @hosts_service.user = @hosts_service.host.user
+    @hosts_service.domain = @hosts_service.host.domain
     @services = Service.where(:enabled => true, :monitor => true, :public => true)
     @intervals = Interval.where(:enabled => true, :public => true)
     @hosts = Host.where(:domain_id => @hosts_service.host.domain.id).order('created_at DESC')
@@ -32,6 +33,8 @@ class HostsServicesController < ApplicationController
 
   def create
     @hosts_service = HostsService.new params[:hosts_service]
+    @hosts_service.user = @hosts_service.host.user
+    @hosts_service.domain = @hosts_service.host.domain
     @hosts_service.enabled = true
     
     if @hosts_service.save
