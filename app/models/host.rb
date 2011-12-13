@@ -19,6 +19,7 @@ class Host < ActiveRecord::Base
   def activate
     service_host_activate = Service.find_by_plugin('host_activate')
     HostsService.create(
+      :domain_id => self.domain.id,
       :host_id => self.id,
       :service_id => service_host_activate.id,
       :user_id => self.user_id,
