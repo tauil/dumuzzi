@@ -36,6 +36,19 @@ unless Service.find_by_plugin("host_activate")
   )
 end
 
+unless Service.find_by_plugin("domain_activate")
+  Service.create(
+    :name => "Domain Activate",
+    :protocol => Protocol.find_by_name('TCP'),
+    :port => 7,
+    :description => "Domain activation test service. Will test and activate the domain for tests.",
+    :plugin => "domain_activate",
+    :public => false,
+    :monitor => true,
+    :enabled => true
+  )
+end
+
 interval = Interval.find(3)
 status = Status.find('-2')
 
@@ -71,6 +84,7 @@ domains.each do |domain|
       :gateway => '0.0.0.0'
     )
     host.hosts_service.create(
+      :domain => domain,
       :host => host,
 	    :service => ping,
     	:user => user,
