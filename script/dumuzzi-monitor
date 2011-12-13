@@ -22,20 +22,20 @@ Forever.run do
   end
 
   # Collecting host data to populate service jobs
-  every 29.seconds do
+  every 25.seconds do
     DumuzziMonitor::collector
   end
-
-  every 39.seconds do
-    DumuzziMonitor::gateway_state_update
-  end
   
-  every 59.seconds do
+  every 30.seconds do
     DumuzziMonitor::tester
   end
 
-  every 79.seconds do
+  every 45.seconds do
     DumuzziMonitor::activate
+  end
+
+  every 60.seconds do
+    DumuzziMonitor::gateway_state_update
   end
 
   on_error do |e|
