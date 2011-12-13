@@ -2,6 +2,7 @@ class HostsService < ActiveRecord::Base
   before_create :generate_ids
   after_create :initialize_status
   belongs_to :user
+  belongs_to :domain
   belongs_to :host
   belongs_to :service
   belongs_to :status
