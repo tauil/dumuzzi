@@ -42,7 +42,7 @@ class Queued < ActiveRecord::Base
   end
 
   def host_activate
-    if self.domain_activate and self.internal_ping
+    if internal_ping
       puts "Activated host #{host.hostname}"
       hash = Socket.gethostbyname(host.hostname)[3]
       ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
@@ -66,7 +66,7 @@ class Queued < ActiveRecord::Base
   end
 
   def domain_activate
-    if Service::internal_ping(host.domain.name)
+    if internal_domain_ping
       puts "Activated domain #{host.domain.name}"
       hash = Socket.gethostbyname(host.domain.name)[3]
       ip = "%d.%d.%d.%d" % [hash[0].ord, hash[1].ord, hash[2].ord, hash[3].ord]
@@ -85,9 +85,13 @@ class Queued < ActiveRecord::Base
     end
   end
 
+  def internal_domain_ping
+    puts ">>>> #{host.domain.name}"
+    Service::internal_ping(host.domain.name)
+  end
+
   def internal_ping
-    hostname = "#{host.hostname}"
-    Service::internal_ping(hostname)
+    Service::internal_ping(host.hostname)
   end
 
   def internal_http_
