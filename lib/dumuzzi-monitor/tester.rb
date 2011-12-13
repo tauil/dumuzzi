@@ -21,7 +21,7 @@ module DumuzziMonitor
           puts "[Tester] #{queued.service.name} Error."
         end
         
-        queued.host.domain.status = status
+#        queued.host.domain.status = status
         queued.host.status = status
         queued.hosts_service.status = status
         
@@ -29,7 +29,7 @@ module DumuzziMonitor
           queued.new_status
         end
         
-        queued.host.domain.save
+#        queued.host.domain.save
         queued.hosts_service.save
         queued.host.save
         queued.save

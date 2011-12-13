@@ -6,7 +6,7 @@
 	  <meta name="keywords" content="host service web based monitor"/>
     <meta name="description" content="Dumuzzi is a free Host Monitoring system."/>
 	  <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />-->
-	  <%= javascript_include_tag "jquery-1.5.2.min", "jquery.tablesorter.min", "jquery.equalHeight", "hideshow" %>
+	  <%= javascript_include_tag "jquery-1.5.2.min", "hideshow", "jquery.tablesorter.min", "jquery.equalHeight" %>
     <%= stylesheet_link_tag "layout.css.scss.erb" %>
 	</head>
   <body>
@@ -67,7 +67,7 @@
       </section>
       
       <footer>
-        <b>Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)</b>
+        <b><%= I18n.t :license_sentence %></b>
       </footer>
     </div>
   </body>

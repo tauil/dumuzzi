@@ -248,3 +248,46 @@ pt-br:
     adding_hosts_service: "Adicionando serviço ao monitoramento"
     of_host: "do Host"
     register_email: "Cadastre o Email"
+
+    #home_titles
+
+    title_home_one: "O que é?"
+    title_home_two: "Como surgiu"
+    title_home_three: "Proposta"
+
+    #home_texts
+
+    text_home_one: "<p>Dumuzzi é um sistema de monitoramento de máquinas e serviços pela internet. Seu objetivo é verificar o estado atual de serviços em máquinas préviamente configuradas, enviando alertas ao administrador.</p>
+          <p>O nome Dumuzzi vem da Mitologia Suméria, onde Dumuzzi representava um filho fiel, um deus guardião das portas do céu. Um serviço de monitoramento eficiente é o guardião do portal dos céus para um SysAdmin, já que, saber que seus servidores estão online e operando em perfeito estado, não tem preço.</p>
+          
+          <p>O serviço é gratuito, limitado à dez (10) domínios por usuário, podendo ser utilizado por qualquer pessoa que queria monitorar serviços ou websites.</p>"
+
+    ##################
+
+    text_home_two: "<p>Dumuzzi nasceu na competição Rally on Rails, feito pela Equipe Cidadelas Jedis e é distribuído sob a licença CDDL, aberto a colaborações.</p>"
+
+    ##################
+
+    text_home_three: "<p>Nossa proposta é disponibilizar um serviço de monitoramento que ao mesmo tempo seja simples e confiavel. Para isto, os testes são feitos de hosts diferentes, em diferentes continentes e provedores de serviço.</p>"
+    #################################### END HOME TEXTS ###############################################################
+
+    license_sentence: "Atribuido a licença Open Source Initiative OSI - Common Development and Distribution License (CDDL-1.0)"
+
+    # terms
+
+    term_index: "Nossa proposta é disponibilizar um serviço de monitoramento que ao mesmo tempo seja simples e confiavel. Para isto, os testes são feitos de hosts diferentes, em diferentes continentes e provedores de serviço."
+
+    term_uses: "Os termos de uso:"
+    term_used_one: "1 - Dumuzzi apenas monitora os serviços remotamente, não efetuando qualquer tipo de ação de recuperação."
+    term_used_two: "2 - Garantimos o envio de mensagens por e-mail."
+    term_used_three: "3 - O serviço preve o envio de mensagens por mensagens instantâneas."
+    term_used_four: "4 - Na eventualidade de envio de mensagens por SMS, os custos serão por conta do utilizador, salvo nos casos houverem patrocinadores. O utilizador, neste caso, deverá aceitar o recebimento de publicidade em cada mensagem."
+    term_used_five: "5 - Dumuzzi não requer a instalação de clientes ou agentes nos sistemas testados."
+    term_used_six: "6 - Dumuzzi utiliza somente técnologias e componentes opensource."
+    term_used_seven: "7 - Dumuzzi é feito para rodar em ambientes Linux e Unix."
+    term_used_eight: "8 - Dumuzzi não possui suporte técnico contratável, seja no local, remoto e/ou por telefone. Oferecemos um suporte básico por e-mail e por meio de lista de discussão. Sua utilização é por conta e risco do utilizador."
+    term_used_nine: "9 - O cancelamento de sua utilização pode ser feito a qualquer momento, em ônus ou quaisquer avisos."
+    term_used_ten: "10 - Dumuzzi não garante a exportação e/ou migração de dados cadastrados."
+    #################################### END TERMS #####################################################################
+
+    technologies_used: "Conheça as tecnologias utilizadas:"
