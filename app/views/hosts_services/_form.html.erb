@@ -41,7 +41,7 @@
     <% else %>
       <%= f.submit I18n.t(:edit_hosts_service) %>
     <% end %>
-    <input type="reset" value="Reset">
+    <%= submit_tag(I18n.t(:reset), { :name => 'reset', :type => "reset" }) %>
     <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back), :border => 0), @hosts_service.host %>
     <% if params[:action] == 'edit' %>
       <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show), :border => 0), @hosts_service %>

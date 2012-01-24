@@ -15,8 +15,12 @@
 </div>
 <footer>
   <div class="submit_link">
-    <%= f.submit %>
-    <input type="reset" value="Reset">
+    <% if params[:action] == 'new' %>
+      <%= f.submit I18n.t(:add_queued) %>
+    <% else %>
+      <%= f.submit I18n.t(:edit_queued) %>
+    <% end %>
+    <%= submit_tag(I18n.t(:reset), { :name => 'reset', :type => "reset" }) %>
     <%= link_to image_tag("/assets/icn_jump_back.png", :alt => I18n.t(:back), :title => I18n.t(:back)), queueds_path %>
     <% if params[:action] == 'edit' %>
       <%= link_to image_tag("/assets/icn_folder.png", :alt => I18n.t(:show), :title => I18n.t(:show)), @queued %>
