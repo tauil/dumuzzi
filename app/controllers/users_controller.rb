@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user.can_login = true
       
     if @user.save
-      flash[:notice] = "Successfully created."
+      flash[:notice] = I18n.t :successfully_created
       redirect_to root_url
     else
       render :new
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated."
+      flash[:notice] = I18n.t :successfully_updated
       redirect_to root_url
     else
       render :edit

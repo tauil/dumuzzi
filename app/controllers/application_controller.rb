@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless current_user
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:notice] = I18n.t :you_must_be_logged
       redirect_to signin_path
       return false
     end

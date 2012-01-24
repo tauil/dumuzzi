@@ -9,12 +9,12 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if authentication
-      flash[:notice] = "Signed in successfully."
+      flash[:notice] = I18n.t :signed_in_successfully
       UserSession.create(authentication.user, true)
       redirect_to root_url
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = "Authentication successful."
+      flash[:notice] = I18n.t :authentication_successful
       redirect_to authentications_url
     else
       user = User.new
@@ -25,7 +25,7 @@ class AuthenticationsController < ApplicationController
       user.can_login = true
       
       if user.save
-        flash[:notice] = "Signed in successfully."
+        flash[:notice] = I18n.t :signed_in_successfully
         UserSession.create(user, true)
         redirect_to root_url
       else
@@ -36,7 +36,7 @@ class AuthenticationsController < ApplicationController
   end
   
   def failure
-    flash[:alert] = "Sorry, You din't authorize"
+    flash[:alert] = I18n.t :sorry_didnt_authorize
     redirect_to root_url
   end
 
@@ -47,7 +47,7 @@ class AuthenticationsController < ApplicationController
   def destroy
     @authentication = current_user.authentications.where(:id => params[:id]).first
     @authentication.destroy
-    flash[:notice] = "Successfully destroyed authentication."
+    flash[:notice] = I18n.t :successfully_destroyed_authentication
     redirect_to authentications_url
   end
 end

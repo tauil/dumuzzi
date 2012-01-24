@@ -4,7 +4,7 @@ module ApplicationHelper
       user.avatar_url
     else
       gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-      "http://gravatar.com/avatar/#{gravatar_id}.png?s=240"
+      "http://gravatar.com/avatar/#{gravatar_id}.png?s=100"
     end
   end    
   def outgoing_menssage

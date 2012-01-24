@@ -1,25 +1,25 @@
 <div id="omniauth_connect">
   <% if authentications %>
     <% unless authentications.empty? %>
-      <p><b>You can sign in to this account using:</b></p>
+      <p><b><%= I18n.t :you_can_sing_account %>:</b></p>
       <div class="authentications">
         <% for authentication in authentications %>
           <span class="auth_providers_used">
             <%= image_tag "#{authentication.provider.downcase}_32.png" %>
-            <%= link_to image_tag("remove.png"), authentication, :confirm => "Are you sure you want to remove #{authentication.provider} authentication option?", :method => :delete, :class => "omniauth_remove", :title => "remove #{authentication.provider} authentication option?" %>
+            <%= link_to image_tag("remove.png"), authentication, :confirm => "#{I18n.t :are_you_sure_remove} #{authentication.provider} #{I18n.t :authentication_option}?", :method => :delete, :class => "omniauth_remove", :title => "#{I18n.t :remove} #{authentication.provider} #{I18n.t :authentication_option}?" %>
           </span>
         <% end %>
         <div class="clear"></div>
       </div>
     <% end %>
-    <p><b>Add another service to sign in with:</b></p>
+    <p><b><%= I18n.t :add_another_service_sign %>:</b></p>
   <% else %>
-    <p><b>Add one of the services to sign in with:</b></p>
+    <p><b><%= I18n.t :add_one_services_sign %>:</b></p>
   <% end %>
-  <a href="/auth/twitter" class="auth_provider" title = "Add twitter service to sign in with">
+  <a href="/auth/twitter" class="auth_provider" title = "<%= I18n.t :add_twitter_service_sign %>">
     <%= image_tag "twitter_32.png", :alt => "Twitter" %>
   </a>
-  <!--<a href="/auth/facebook" class="auth_provider" title = "Add facebook to sign in with">
+  <!--<a href="/auth/facebook" class="auth_provider" title = "<%#= I18n.t :add_facebook_service_sign %>">
     <%#= image_tag "facebook_32.png", :alt => "Facebook" %>
   </a>-->
   <div class="clear"></div>

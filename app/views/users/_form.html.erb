@@ -1,37 +1,44 @@
 <div class="user-form">
-  <h1><%= I18n.t :register %></h1>
+  <% if params[:action] == 'edit' %>
+    <h1><%= I18n.t :edit_your_profile %></h1>
+  <% else %>
+    <h1><%= I18n.t :register %></h1>
+  <% end %>
+
+  <% if params[:action] == 'edit' %>
+    <%= image_tag avatar_url(user) %>
+  <% end %>
+
   <%= form_for(user) do |f| %>
     <p>
-      <%= f.label :name %><br />
+      <%= I18n.t :name %><br />
       <%= f.text_field :name %>
     </p>
     
     <p>
-      <%= f.label :login %><br />
+      <%= I18n.t :login %><br />
       <%= f.text_field :login %>
     </p>
     
     <p>
-      <%= f.label :email %><br />
+      <%= I18n.t :email %><br />
       <%= f.text_field :email %>
     </p>
     <p>
-      <%= f.label :password %><br />
+      <%= I18n.t :password %><br />
       <%= f.password_field :password %>
     </p>
     <p>
-      <%= f.label :password_confirmation %><br />
+      <%= I18n.t :password_confirmation %><br />
       <%= f.password_field :password_confirmation %>
     </p>
-    <p><%= f.submit %></p>
+    <% if params[:action] == 'edit' %>
+      <p><%= f.submit I18n.t :update %></p>
+    <% else %>
+      <p><%= f.submit I18n.t :create %></p>
+    <% end %>
   <% end %>
 </div>
-
-<% if params[:action] == 'edit' %>
-<div id="image_user">
-  <%= image_tag avatar_url(user) %>
-</div>
-<% end %>
 
 <% if current_user != nil && current_user.id == user.id %>
   <div class="omniauth-connect">
