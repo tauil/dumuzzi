@@ -9,3 +9,4 @@ config/tester.yml
 config/unicorn.rb
 app/views/shared/_sidebar_ads.html.erb
 config/initializers/omniauth.rb
+.rvmrc
